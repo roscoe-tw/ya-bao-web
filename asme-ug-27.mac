@@ -1,0 +1,48 @@
+kill(all)$
+/*
+THICKNESS OF SHELLS UNDER INTERNAL PRESSURE
+
+- E = joint efficiency
+- P = internal design pressure
+- R = inside radius of the shell course under consideration
+- S = maximum allowable stress value 
+- tr = minimum required thickness of shell
+*/
+load("ezunits")$
+/*
+Circumferential Stress (Longitudinal Joints). When the thickness does not exceed one-half of the inside radius, or P does not exceed 0.385S E , the following formulas shall apply:
+*/
+
+ttcs(P, R, S, E):= block([], (P*R)/(S*E-0.6*P))$
+Pcs(S, E, tt, R):= block([], (S*E*tt)/(R+0.6*tt))$
+/*
+Longitudinal Stress (Circumferential Joints). When the thickness does not exceed one‐half of the inside radius, or P does not exceed 1.25SE , the following formulas shall apply:
+*/
+ttls(P, R, S, E):= block([], (P*R)/(2*S*E+0.4*P))$
+Pls(S, E, tt, R):= block([], (2*S*E*tt)/(R-0.4*tt))$
+/*
+Spherical Shells. When the thickness of the shell of a wholly spherical vessel does not exceed 0.356R , or P does not exceed 0.665S E , the following formulas shall apply:
+*/
+
+ttss(P, R, S, E):= block([], (P*R)/(2*S*E-0.2*P))$
+Pss(S, E, tt, R):= block([], (2*S*E*tt)/(R+0.2*tt))$
+
+/*minimum thickness*/
+tt["min-UG16"]:1.5`mm $
+/*corrosion allowance*/
+tt["corrosion"] : 3.0`mm $
+
+E:1.0$
+P:1.0`MPa$
+
+/*D = inside diameter of she shell course under consideration*/
+D:1000.0`mm$
+
+R: D/2 + tt["corrosion"]$
+
+S:138.0`MPa$
+
+tcal(ttcs,ttls,tmin,tcor):=block([cs:qty(ttcs``mm), ls:qty(ttls``mm), min:qty(tmin``mm)],
+  max(cs, ls, min)`mm+tcor)$
+
+tr: tcal(ttcs(P, R, S, E), ttls(P, R, S, E), tt["min-UG16"], tt["corrosion"])``mm;
