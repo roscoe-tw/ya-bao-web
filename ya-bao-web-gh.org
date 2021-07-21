@@ -1,0 +1,54 @@
+#+TITLE: ya-bao-web-gh
+ya-bao-web 的 github pages 控制文件
+* index.html
+  #+begin_src html :tangle index.html
+    <!DOCTYPE html>
+    <html>
+      <head>
+	<meta name="google-site-verification" content="6qFjj1TtFctlKH--W9gYQJ7MDsIjT6OzJtFhyU-Epz0" />
+      </head>
+      <body>
+	<h1> Hellow world</h1>
+      </body>
+    </html>  
+  #+end_src
+* OBS 應用企劃
+* readme.org
+* [[blog.org][blog.org]]
+* sitemap
+  使用 common lisp 產生 sitemap
+  #+begin_src lisp
+    (ql:quickload "cxml")
+
+    (defun generate-sitemap (urls)
+      "Creates the sitemap file"
+      (with-open-file (file "/tmp/sitemap.xml"
+			    :direction :output
+			    :element-type :default
+			    :if-exists  :supersede)
+	(cxml:with-xml-output (cxml:make-octet-stream-sink file :indentation 1 :canonical nil)
+	  (cxml:with-element "urlset"
+	    (cxml:attribute "xmlns" "http://www.sitemaps.org/schemas/sitemap/0.9")
+	    ;; create the tags
+	    (dolist (item urls)
+	      (cxml:with-element "url"
+		(cxml:with-element "loc"
+		  (cxml:text item))
+		(cxml:with-element "changefreq"
+		  (cxml:text "daily"))
+		(cxml:with-element "priority"
+			  (cxml:text "0.5"))))))))
+
+    (defun create-sitemap (&rest urls)
+      (generate-sitemap urls))
+
+    ;;; /tmp/sitemap.xml
+    (progn
+      (create-sitemap "https://roscoe-tw.github.io/ya-bao-web/index.html"
+		      "https://roscoe-tw.github.io/ya-bao-web/blog.html"))
+  #+end_src
+
+  #+RESULTS:
+  : #<SB-SYS:FD-STREAM for "file /tmp/sitemap.xml" {1003A703E3}>
+
+   

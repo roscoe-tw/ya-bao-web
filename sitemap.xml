@@ -5,11 +5,15 @@
    https://roscoe-tw.github.io/ya-bao-web/index.html</loc>
   <changefreq>
    daily</changefreq>
+  <priority>
+   0.5</priority>
  </url>
  <url>
   <loc>
    https://roscoe-tw.github.io/ya-bao-web/blog.html</loc>
   <changefreq>
    daily</changefreq>
+  <priority>
+   0.5</priority>
  </url>
 </urlset>
