@@ -1,0 +1,163 @@
+#+TITLE: OBS 應用企劃
+#+OPTIONS: html-postamble:nil
+#+OPTIONS: toc:nil num:3 H:4 ^:nil pri:t
+#+HTML_HEAD: <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+* OBS (Open Broadcaster Software)
+  Open Broadcaster Software 是由 OBS Project 開發的自由開源跨平台串流媒體和錄影程式。
+   
+  [[https://obsproject.com/][https://obsproject.com/assets/images/OBSDemoApp2610.png]]
+** 應用
+*** 錄製應用程式畫面
+    - 可以將桌面上的應用程式的畫面，如 PowerPoint 等簡報。
+    - 將應用程式操作的畫面錄製。
+*** 整合錄影設備及影片場景
+    - 將攝影機中的影像整合到桌面的畫面中。
+    - 配合已經準備好的影片，並錄製於畫面中。
+*** 將上述的整合畫面使用於視訊會議
+    - 配合虛擬相機給視訊會議的鏡頭。
+*** 網路直播
+    - 使用 youtube 等網路平台作為直播工具。
+* 注意事項
+** 隱私權
+*** 隱私權及安全政策
+    親愛的朋友，歡迎您蒞臨「OBS 視訊應用平台」（以下簡稱本平台）！
+    + 適用範圍
+      - 使用本平台服務時，所涉及的個人資料蒐集、運用與保護。個人資料之蒐集及使用方式。
+      - 單純在本平台的瀏覽及檔案下載行為，本平台並不會蒐集任何有關個人的身份資料。
+      - 網站會記錄使用者上網時間以及在網站內所瀏覽的網頁等資料，這些資料係供本平台管理單位內部作網站流量和網路行為調查的總量分析，以利於提昇本平台的服務品質，並不會對個別使用者進行分析。
+    + 資訊安全 
+      - 使用網路入侵偵測系統，監控網路流量，以確認未經授權而企圖上載或更改、網頁資訊或蓄意破壞者。 
+      - 裝設防火牆防止非法入侵、破壞或竊取資料，避免網站遭到非法使用，並保障使用者的權益。 
+      - 裝設掃毒軟體，定期掃毒，提供使用者安全的網頁瀏覽環境。 
+      - 定時依照相關作業系統廠商之通知，更新適當之修補程式(patch)。
+    + 傳送電子郵件之政策 
+      - 本平台將在事前或註冊登錄取得您的同意後，傳送資料或回復電子郵件給您。本平台除了在該資料或電子郵件上註明是由「OBS 視訊應用平台」發送，也會在該資料或電子郵件上提供您能隨時停止接收這些資料或電子郵件的方法、說明或功能連結。
+    + 資料分享及公開方式 
+      - 本平台絕不會任意出售、交換、或出租任何您的個人資料給其他團體、個人或私人企業。
+    + 隱私權保護宣告之諮詢 
+      - 如果您對本平台的隱私權保護宣告有任何疑問，歡迎來信指教。 
+    
+*** text                                                           :noexport:
+    #+begin_src text
+      隱私權及安全政策
+
+      親愛的朋友，歡迎您蒞臨「政府網站營運交流平台」（以下簡稱本平台）！ 
+
+      為了尊重並保護您在使用網際網路時的安全及隱私保護，本平台特制訂了隱私權及資訊安全政策宣告。 
+
+      為了幫助您瞭解本平台如何保護您在使用網站時各項服務的安全、及如何蒐集、應用及保護您所提供的個人資訊，請您仔細閱讀以下各項說明：
+
+      適用範圍
+      (1) 使用本平台服務時，所涉及的個人資料蒐集、運用與保護。
+      個人資料之蒐集及使用方式。
+      (1) 單純在本平台的瀏覽及檔案下載行為，本平台並不會蒐集任何有關個人的身份資料。 
+      (2) 利用本平台所提供的客服信箱，需使用者提供個人資料時，本平台會依需求請您提供姓名及e-mail之個人資料。 
+      (3) 網站會記錄使用者上網時間以及在網站內所瀏覽的網頁等資料，這些資料係供本平台管理單位內部作網站流量和網路行為調查的總量分析，以利於提昇本平台的服務品質，並不會對個別使用者進行分析。
+      資訊安全 
+      (1) 使用網路入侵偵測系統，監控網路流量，以確認未經授權而企圖上載或更改、網頁資訊或蓄意破壞者。 
+      (2) 裝設防火牆防止非法入侵、破壞或竊取資料，避免網站遭到非法使用，並保障使用者的權益。 
+      (3) 裝設掃毒軟體，定期掃毒，提供使用者安全的網頁瀏覽環境。 
+      (4) 定時依照相關作業系統廠商之通知，更新適當之修補程式(patch)。
+      傳送電子郵件之政策 
+      本平台將在事前或註冊登錄取得您的同意後，傳送資料或回復電子郵件給您。本平台除了在該資料或電子郵件上註明是由「政府網站營運交流平台」發送，也會在該資料或電子郵件上提供您能隨時停止接收這些資料或電子郵件的方法、說明或功能連結。
+      資料分享及公開方式 
+      本平台絕不會任意出售、交換、或出租任何您的個人資料給其他團體、個人或私人企業。
+      隱私權保護宣告之諮詢 
+      如果您對本平台的隱私權保護宣告有任何疑問，歡迎來信指教。 
+
+    #+end_src
+** 版權管理
+*** 音樂
+*** 影像
+** TODO 檔案管理
+*** 畫質
+*** 檔案格式
+*** 版本控制
+*** 字幕
+*** 備份機制
+** 串流平台的注意事項
+*** youtube
+    [[https://www.youtube.com/intl/zh-TW/about/policies/#community-guidelines][youtube 的政策與安全性]]
+* 輔助軟體
+** 影片剪輯及後製
+*** Blender
+    Blender 是專業的自由及開放原始碼 3D 電腦圖形軟體。
+
+    [[https://zh.wikipedia.org/wiki/Blender][說明參考 wiki:Blender]]
+
+    Blender 是一個 3d 模型製作軟體，建模、算圖、動畫等功能都相當完整，具有一般商業軟體的規模。 Blender VSE 是 Blender 附帶內置影像編輯器，允許您執行視頻剪輯和拼接等基本操作，以及更複雜的任務，如視頻屏蔽或顏色分級。
+
+    [[https://docs.blender.org/manual/en/latest/video_editing/introduction.html][Blender VSE 說明]]
+    
+*** DaVinci Resolv
+    DaVinci Resolve（原名：da Vinci Resolve，俗稱：達芬奇、達文西）是適用於 MacOS 、 Windows 和 Linux 的調色和非線性編輯的影片剪輯軟體，最初由 da Vinci Systems 開發，後於 2009 年被 Blackmagic Design收購。除了該軟體的商業版本（稱為 DaVinci Resolve Studio）之外， Blackmagic Design 還分發了具有減少功能的免費版本，簡稱為 DaVinci Resolve （舊稱 DaVinci Resolve Lite ）。
+
+    [[https://zh.wikipedia.org/wiki/DaVinci_Resolve][說明參考 wiki:DaVici Resolv]]
+
+    達文西/達芬奇 DaVinci Resolve 是真正的免費版，不只是 EDIT 剪輯軟體，包含世界一流的調光調色工具 Color，影像合成 Fusion 和 Fairlight專業後期音效處理軟體 。
+*** TODO Adobe Premiere Pro
+** 影像編輯
+*** GIMP
+    GIMP是一個自由及開放原始碼的點陣圖圖像編輯器，用於圖像相片潤飾及編輯、自由繪圖、調整大小、裁剪、相片蒙太奇、裝換圖像格式以及其他專業任務。
+
+    [[https://zh.wikipedia.org/wiki/GIMP][說明參考 wiki:GIMP]]
+
+    一般使用 GIMP 來處理數位相片的後製，如去背及調色等功能。和一般商業軟體比較，如 Photoshop。
+*** Inkscape
+    Inkscape 是向量圖形編輯器，以自由軟體授權發布與使用。該軟體的開發目標是成為強大的繪圖軟體，且能完全遵循與支援 XML 、 SVG 及 CSS 等開放性的標準格式，而且是跨平台的應用程式，支援 Windows 、 Mac OS X 、 Linux 及類 UNIX 版等作業系統。
+
+    [[https://zh.wikipedia.org/wiki/Inkscape][說明參考 wiki:Inkscape]]
+
+    Inkscape 在編輯向量圖形後，可以匯出成點陣圖如 PNG 檔，以匯入影片編輯器作為片頭、片尾的場影；或者可以作為背景使用。
+* 硬體及作業環境
+** 電腦資源
+*** 螢幕
+    使用二台螢幕。
+*** NAS 、 硬碟矩陣
+    儲存各式場景、影片及音效等素材。及完成的影片。
+*** 影像擷取卡
+    將錄影設備的訊號擷取及轉換成為影像。
+*** 網路介面
+    使用於網路直播或將網路攝影機的訊號傳送。
+*** 讀卡機
+** 錄影設備
+*** 攝影機
+*** 儲存介面
+**** SD 卡
+*** 數位相機
+*** 綠幕
+    在背景使用綠幕可以在後製時加入相關特效。
+*** 燈光
+    提供攝影現場光源，並調整重點區域光線的改善。
+** 錄音設備
+*** 隔音環境
+*** 麥克風
+    [[https://odysee.com/@NiceChord:5/how-to-record-audio:6][連接：好和弦-拍影片到底該怎麼收音？每種方法都試一遍給你看啦！]]
+**** 結構
+     - 電容麥克風
+     - 動圈麥克風
+**** 連接方式
+     - 無線麥克風
+     - 有線麥克風
+*** 混音設備
+    - 前級混音器
+* TODO 場景
+** 開場
+** 內容
+** 結尾
+** 商標
+** 過場
+* TODO 人力/工時
+** 攝影
+** 剪輯
+   - 分剪
+   - 轉檔
+   - 特效
+   - 字幕
+** 燈光
+** 導播
+** 收音
+* 授權
+  #+begin_export html
+  <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="創用 CC 授權條款" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" property="dct:title"> OBS 應用企劃</span>由<span xmlns:cc="http://creativecommons.org/ns#" property="cc:attributionName"> Colin Luo </span>製作，以<a rel="license" href="http://creativecommons.org/licenses/by/4.0/">創用 CC 姓名標示 4.0 國際 授權條款</a>釋出。<br />此作品衍生自<a xmlns:dct="http://purl.org/dc/terms/" href="https://roscoe-tw.github.io/ya-bao-web/obs-application-planning/application.html" rel="dct:source">https://roscoe-tw.github.io/ya-bao-web/obs-application-planning/application.html</a>。
+  #+end_export
