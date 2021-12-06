@@ -1,0 +1,51 @@
+/*端板容積計算*/
+/*
+	ID:1500-28*2;
+	head_type "SE";
+	L:38; */
+
+volume_head(ID,L,head_type):=block([R,r,x1,x2,x3,y1,VV,f1,f2,f3,v1,v2,v3],
+	if head_type = "SE"
+	then
+	    block([],
+		R:ID*0.9045,
+	      	r:ID*0.1727)
+	elseif head_type = "SD"
+	then
+	    block([],
+		R:ID*1,
+		r:ID*0.1),
+
+ 	x1(R,SETA):=R-R*cos(SETA),
+	x2(R,r,SETA):=R-(R-r)*cos(SETA),
+	x3(x2,L):=x2+L,
+	y1(ID,r):=ID/2-r,
+
+
+	SETA:asin((ID/2-r)/(R-r)),
+
+	x1:x1(R,SETA),
+	x2:x2(R,r,SETA),
+	x3:x3(x2,L),
+	y1:y1(ID,r),
+
+	f1(R,x):=sqrt(R^2-(x-R)^2),
+	f2(r,x,x2,y1):=sqrt(r^2-(x-x2)^2)+y1,
+	f3(ID):=ID/2,
+
+	f1:f1(R,x),
+	f2:f2(r,x,x2,y1),
+	f3:f3(ID),
+
+	V1:integrate(%pi*f1^2,x,0,x1),
+	V2:integrate(%pi*f2^2,x,x1,x2),
+	V3:integrate(%pi*f3^2,x,x2,x3),
+
+	VV:V1+V2+V3,
+
+	H_WL:float((0.8e+9-VV)*4 /ID^2 /%pi),
+
+	print("刻度尺"),
+	print("下端板容積(含直部)", float(VV/1e9)," M^3"),
+	print("每 10L 距離 ",float((0.01e9 *4)/(ID^2 * %pi))," mm"),
+	VV);
