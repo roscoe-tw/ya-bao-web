@@ -1,0 +1,85 @@
+/*
+Copyright Each Application Mechanical Design Studio
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+/*確認壓力容器配件的最小厚度 */
+
+kill(all);
+
+minithickness_inch(NPS) := block([],
+  if sequal(NPS, "1/8")
+  then 0.11
+  elseif sequal(NPS, "1/4")
+  then 0.11
+  elseif sequal(NPS, "3/8")
+  then 0.11
+  elseif sequal(NPS, "1/2")
+  then 0.14
+  elseif sequal(NPS, "3/4")
+  then 0.16
+  elseif sequal(NPS, "1")
+  then 0.22
+  elseif sequal(NPS, "1-1/4")
+  then 0.30
+  elseif sequal(NPS, "1-1/2")
+  then 0.30
+  elseif sequal(NPS, "2")
+  then 0.31
+  elseif sequal(NPS, "2-1/2")
+  then 0.37
+  elseif sequal(NPS, "3")
+  then 0.38
+  else
+  "NULL");
+
+minithickness_mm(NPS) := block([],
+  if sequal(NPS, "1/8")
+  then 2.7
+  elseif sequal(NPS, "1/4")
+  then 2.7
+  elseif sequal(NPS, "3/8")
+  then 2.7
+  elseif sequal(NPS, "1/2")
+  then 3.6
+  elseif sequal(NPS, "3/4")
+  then 4.2
+  elseif sequal(NPS, "1")
+  then 5.5
+  elseif sequal(NPS, "1-1/4")
+  then 7.5
+  elseif sequal(NPS, "1-1/2")
+  then 7.5
+  elseif sequal(NPS, "2")
+  then 7.9
+  elseif sequal(NPS, "2-1/2")
+  then 9.5
+  elseif sequal(NPS, "3")
+  then 9.5
+  else
+  "NULL");
+
+/*
+設定單位系統: 國際標準 "SI" 或 美國慣用單位 "U.S. customary units"
+*/
+
+unit_system : "SI";
+
+minithickness_fitting(unit_system, nps_no):= block([],
+  if sequal(unit_system, "SI")
+  then minithickness_mm(nps_no)
+  elseif sequal(unit_system, "U.S. customary units")
+  then minithickness_inch(nps_no)
+  else
+  "NULL");
