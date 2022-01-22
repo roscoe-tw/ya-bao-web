@@ -12,9 +12,11 @@ ya-bao-web 的 github pages 控制文件
       </body>
     </html>  
   #+end_src
+* ya-bao-doc-database.org
+[[file+emacs:ya-bao-doc-database.org][ya-bao-doc-database.org]]
 * OBS 應用企劃
 * readme.org
-* [[blog.org][blog.org]]
+* [[file+emacs:./blog.org][blog.org]]
 * sitemap
   使用 common lisp 產生 sitemap
   #+begin_src lisp
@@ -22,7 +24,7 @@ ya-bao-web 的 github pages 控制文件
 
     (defun generate-sitemap (urls)
       "Creates the sitemap file"
-      (with-open-file (file "/tmp/sitemap.xml"
+      (with-open-file (file "./sitemap.xml"
 			    :direction :output
 			    :element-type :default
 			    :if-exists  :supersede)
@@ -42,13 +44,17 @@ ya-bao-web 的 github pages 控制文件
     (defun create-sitemap (&rest urls)
       (generate-sitemap urls))
 
+    (defun web-url (url)
+      (format nil "https://roscoe-tw.github.io/ya-bao-web/~A" url))
+
     ;;; /tmp/sitemap.xml
     (progn
       (create-sitemap "https://roscoe-tw.github.io/ya-bao-web/index.html"
-		      "https://roscoe-tw.github.io/ya-bao-web/blog.html"))
+		      "https://roscoe-tw.github.io/ya-bao-web/blog.html"
+		      (web-url "ya-bao-doc-database.html")
+		      (web-url "asme-viii-ucs-66.html")))
   #+end_src
 
   #+RESULTS:
   : #<SB-SYS:FD-STREAM for "file /tmp/sitemap.xml" {1003A703E3}>
-
-   
+* blog.org
