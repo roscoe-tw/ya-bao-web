@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
+<head>
+<!-- 2022-01-22 六 20:46 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>低合金鋼及碳鋼低溫作業/ 判定 MDMT</title>
+<meta name="author" content="各申機械設計工作室" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<meta name='description'  content='低合金鋼及碳鋼低溫作業及判定 MDMT'/>
+<style type="text/css">
+ol.a {list-style-type:lower-alpha;list-style-position: outside;}
+ol.a > li::marker {content:"(" counter(list-item,lower-alpha) ")";}
+li{display: list-item;}
+ol.b {list-style-type:decimal; list-style-position: outside;}
+ol.b > li::marker {content:"(" counter(list-item, decimal) ")";}
+table.aaa {border:0;colspan:0;vertical-align:top}
+table.aaa, td {vertical-align:top}
+</style>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">低合金鋼及碳鋼低溫作業/ 判定 MDMT</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org62ab631">1. 衝擊試驗豁免曲線</a>
+<ul>
+<li><a href="#orgfcd99a5">1.1. 美國慣用單位</a></li>
+<li><a href="#org87da881">1.2. SI 單位</a></li>
+<li><a href="#org53653d0">1.3. GENERAL NOTES</a></li>
+<li><a href="#orgaca1b9c">1.4. NOTES:</a></li>
+</ul>
+</li>
+<li><a href="#orgb69bb4e">2. 在沒有衝擊測試的情況下降低最低設計金屬溫度</a>
+<ul>
+<li><a href="#orgeec4243">2.1. 美國慣用單位</a></li>
+<li><a href="#org0a1acb9">2.2. SI 單位</a></li>
+</ul>
+</li>
+<li><a href="#org6c91ef1">3. UCS-66 無衝擊試驗確定最低設計金屬溫度 (MDMT) 規則圖</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org62ab631" class="outline-2">
+<h2 id="org62ab631"><span class="section-number-2">1.</span> 衝擊試驗豁免曲線</h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-orgfcd99a5" class="outline-3">
+<h3 id="orgfcd99a5"><span class="section-number-3">1.1.</span> 美國慣用單位</h3>
+<div class="outline-text-3" id="text-1-1">
+
+<div id="org5f798f0" class="figure">
+<p><img src="pic/ucs-66/figure-UCS-66.png" alt="衝擊試驗豁免曲線/ 美國慣用單位" width="800" /><br />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org87da881" class="outline-3">
+<h3 id="org87da881"><span class="section-number-3">1.2.</span> SI 單位</h3>
+<div class="outline-text-3" id="text-1-2">
+
+<div id="orgc5da0f3" class="figure">
+<p><img src="pic/ucs-66/figure-UCS-66M.png" alt="衝擊試驗豁免曲線/ SI 單位" width="800" /><br />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org53653d0" class="outline-3">
+<h3 id="org53653d0"><span class="section-number-3">1.3.</span> GENERAL NOTES</h3>
+<div class="outline-text-3" id="text-1-3">
+<ol class="org-ol b">
+<li>Tabular values for this figure are provided in Table UCS-66.<br /></li>
+<li>See UCS-66(a).<br /></li>
+<li><p>
+For bolting and nuts, the following impact test exemption temperatures shall apply:<br />
+</p>
+
+<div id="orgf3d708a" class="figure">
+<p><img src="./pic/ucs-66/Figure-UCS-66-1-GN-c.png" alt="&quot;Figure UCS-66 GENERAL NOTES:(c) For bolting and nuts, the following impact test exemption temperatures shall apply&quot;" width="800" /><br />
+</p>
+</div></li>
+<li>When no class or grade is shown, all classes or grades are included.<br /></li>
+<li>The following shall apply to all material assignment notes:<br />
+<ol class="org-ol a">
+<li>Cooling rates faster than those obtained by cooling in air, followed by tempering, as permitted by the material specification, are considered to be equivalent to normalizing or normalizing and tempering heat treatments.<br /></li>
+<li>Fine grain practice is defined as the procedure necessary to obtain a fine austenitic grain size as described in SA-20.<br /></li>
+<li>Normalized rolling condition is not considered as being equivalent to normalizing.<br /></li>
+</ol></li>
+<li>Castings not listed in Notes (1) and (2) below shall be impact tested. &lt;/li&gt;<br /></li>
+</ol>
+</div>
+</div>
+
+
+<div id="outline-container-orgaca1b9c" class="outline-3">
+<h3 id="orgaca1b9c"><span class="section-number-3">1.4.</span> NOTES:</h3>
+<div class="outline-text-3" id="text-1-4">
+<ol class="org-ol b">
+<li>Curve A applies to the following:<br />
+<ol class="org-ol a">
+<li>all carbon and all low alloy steel plates, structural shapes, and bars not listed in Curves B, C, and D below<br /></li>
+<li>SA-216 Grades WCB and WCC if normalized and tempered or water-quenched and tempered; SA-217 Grade WC6 if normalized and tempered or water-quenched and tempered<br /></li>
+<li>A/SA-105 forged flanges supplied in the as-forged condition<br /></li>
+</ol></li>
+<li>Curve B applies to the following:<br />
+<ol class="org-ol a">
+<li>see below:<br />
+A/SA-105 forged flanges produced to fine grain practice and normalized, normalized and tempered, or quenched and tempered after forging<br />
+SA-216 Grade WCA if normalized and tempered or water-quenched and tempered<br />
+SA-216 Grades WCB and WCC for thicknesses not exceeding 2 in. (50 mm) , if produced to fine grain practice and water-quenched and tempered<br />
+SA-217 Grade WC9 if normalized and tempered<br />
+SA-299<br />
+SA-414 Grade A<br />
+SA-515 Grade 60<br />
+SA-516 Grades 65 and 70 if not normalized<br />
+SA-612 if not normalized<br />
+SA-662 Grade B if not normalized<br />
+SA/EN 10028-2 Grades P235GH, P265GH, P295GH, and P355GH as rolled<br />
+SA/AS 1548 Grades PT430NR and PT460NR<br />
+SA/GB 713 Grade Q345R if not normalized<br /></li>
+<li>except for cast steels, all materials of Curve A, if produced to fine grain practice and normalized, that are not listed in Curves C and D below<br /></li>
+<li>all pipe, fittings, forgings and tubing not listed for Curves C and D below<br /></li>
+<li>parts permitted under UG-11 even when fabricated from plate that otherwise would be assigned to a different curve<br /></li>
+</ol></li>
+<li>Curve C applies to the following:<br />
+<ol class="org-ol a">
+<li>see below:<br />
+SA-182 Grades F21 and F22 if normalized and tempered<br />
+SA-302 Grades C and D<br />
+SA-336 F21 and F22 if normalized and tempered, or liquid quenched and tempered<br />
+SA-387 Grades 21 and 22 if normalized and tempered, or liquid quenched and tempered<br />
+SA-516 Grades 55 and 60 if not normalized<br />
+SA-533 Types B and C Class 1<br />
+SA-662 Grade A<br />
+SA/EN 10028-2 Grade 10CrMo9–10 if normalized and tempered<br /></li>
+
+<li>all materials listed in 2(a) and 2(c) for Curve B if produced to fine grain practice and normalized, normalized and tempered, or liquid quenched and tempered as permitted in the material specification, and not listed for Curve D below<br /></li>
+</ol></li>
+<li>Curve D applies to the following:<br />
+SA-203<br />
+SA-299 if normalized<br />
+SA-508 Grade 1<br />
+SA-516 if normalized or quenched and tempered<br />
+SA-524 Classes 1 and 2<br />
+SA-537 Classes 1, 2, and 3<br />
+SA-612 if normalized<br />
+SA-662 if normalized<br />
+SA-738 Grade A<br />
+SA-738 Grade A with Cb and V deliberately added in accordance with the provisions of the material specification, not colder than −20°F (−29°C)<br />
+SA-738 Grade B not colder than −20°F (−29°C)<br />
+SA/AS 1548 Grades PT430N and PT460N<br />
+SA/EN 10028-2 Grades P235GH, P265GH, P295GH, and P355GH if normalized<br />
+SA/EN 10028-3 Grade P275NH<br />
+SA/GB 713 Grade Q345R if normalized<br /></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb69bb4e" class="outline-2">
+<h2 id="orgb69bb4e"><span class="section-number-2">2.</span> 在沒有衝擊測試的情況下降低最低設計金屬溫度</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgeec4243" class="outline-3">
+<h3 id="orgeec4243"><span class="section-number-3">2.1.</span> 美國慣用單位</h3>
+<div class="outline-text-3" id="text-2-1">
+
+<div id="orgd4da49b" class="figure">
+<p><img src="pic/ucs-66/fig-table-ucs-66-1.png" alt="在沒有衝擊測試的情況下降低最低設計金屬溫度/ 美國慣用單位" width="800" /><br />
+</p>
+</div>
+
+<table border="0" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="aaa">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">\(c\)</td>
+<td class="org-left">=</td>
+<td class="org-left">corrosion allowance, in.</td>
+</tr>
+
+<tr>
+<td class="org-left">\(E^*\)</td>
+<td class="org-left">=</td>
+<td class="org-left">as defined in Figure UCS-66.2, Note (3)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(t_n\)</td>
+<td class="org-left">=</td>
+<td class="org-left">nominal thickness of the component under consideration before corrosion allowance is deducted, in.</td>
+</tr>
+
+<tr>
+<td class="org-left">\(t_r\)</td>
+<td class="org-left">=</td>
+<td class="org-left">required thickness of the component under consideration in the corroded condition for all applicable loadings  [Figure UCS-66.2, Note (2)], based on the applicable joint efficiency \(E\) [Figure UCS-66.2, Note (3)],  in.</td>
+</tr>
+</tbody>
+</table>
+
+
+
+<p>
+NOTES:<br />
+</p>
+<ol class="org-ol b">
+<li>Alternative Ratio = S* E* divided by the product of the maximum allowable stress value from Table UCS-23 times E , where S* is the applied general primary membrane tensile stress and E and E * are as defined in Figure UCS-66.2, Note (3)<br /></li>
+<li>See UCS-66(b).<br /></li>
+</ol>
+</div>
+</div>
+
+<div id="outline-container-org0a1acb9" class="outline-3">
+<h3 id="org0a1acb9"><span class="section-number-3">2.2.</span> SI 單位</h3>
+<div class="outline-text-3" id="text-2-2">
+
+<div id="org8c2335a" class="figure">
+<p><img src="pic/ucs-66/fig-table-ucs-66-1M.png" alt="在沒有衝擊測試的情況下降低最低設計金屬溫度/ SI 單位" width="800" /><br />
+</p>
+</div>
+
+
+<table border="0" cellspacing="0" cellpadding="6" rules="groups" frame="hsides" class="aaa">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">\(c\)</td>
+<td class="org-left">=</td>
+<td class="org-left">corrosion allowance, \(mm\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(E^*\)</td>
+<td class="org-left">=</td>
+<td class="org-left">as defined in Figure UCS-66.2, Note (3)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(t_n\)</td>
+<td class="org-left">=</td>
+<td class="org-left">nominal thickness of the component under consideration before corrosion allowance is deducted, \(mm\)</td>
+</tr>
+
+<tr>
+<td class="org-left">\(t_r\)</td>
+<td class="org-left">=</td>
+<td class="org-left">required thickness of the component under consideration in the corroded condition for all applicable loadings  [Figure UCS-66.2, Note (2)], based on the applicable joint efficiency E [Figure UCS-66.2, Note (3)], \(mm\)</td>
+</tr>
+</tbody>
+</table>
+
+
+<p>
+NOTES:<br />
+</p>
+<ol class="org-ol b">
+<li>Alternative Ratio = S* E* divided by the product of the maximum allowable stress value from Table UCS-23 times E , where S* is the applied general primary membrane tensile stress and E and E * are as defined in Figure UCS-66.2, Note (3)<br /></li>
+<li>See UCS-66(b).<br /></li>
+</ol>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org6c91ef1" class="outline-2">
+<h2 id="org6c91ef1"><span class="section-number-2">3.</span> UCS-66 無衝擊試驗確定最低設計金屬溫度 (MDMT) 規則圖</h2>
+<div class="outline-text-2" id="text-3">
+
+<div id="org7160451" class="figure">
+<p><img src="pic/ucs-66/fig-ucs-66-2.png" alt="UCS-66 無衝擊試驗確定最低設計金屬溫度 (MDMT) 規則圖" width="800" /><br />
+</p>
+</div>
+
+
+<p>
+NOTES:<br />
+</p>
+<ol class="org-ol b">
+<li>對於材料規範允許軋製公差的管材，扣除軋製公差後的厚度應作為未腐蝕的公稱厚度 t<sub>n</sub>，以確定銘牌上的 MDMT。同樣，對於成型頭，成型後的最小規定厚度應用作 t<sub>n</sub> 。<br /></li>
+<li>載荷，包括在 UG-22 中列出的載荷，這會在同時發生的 MDMT 處產生一般的主要膜拉伸應力。<br /></li>
+<li>E 是用於計算 t<sub>r</sub> 的聯合效率（表 UW-12）； E* 具有等於 E 的值，但 E* 不得小於 0.80。對於鑄件，使用質量因數或接頭效率 E，以支配設計為準。<br /></li>
+<li>圖 UCS-66 的構造使得如此選擇的 MDMT 被認為與在第 II 部分 D 子部分 1 表 1A 中的最大允許拉伸應力值下施加的一般主膜拉伸應力同時發生。圖 UCS-66 的表格值顯示在表 UCS-66 中。<br /></li>
+<li>有關控制厚度的定義，請參見 UCS-66(a)(1)(-a)、(a)(1)(-b) 和 (a)(1)(-c)。<br /></li>
+<li>如果計算的試驗壓力的基礎大於設計壓力 [UG-99(c) 試驗]，則應使用基於計算的試驗壓力的基礎確定的 t<sub>r</sub> 和相關的適當的 t<sub>n</sub> - c 值的比率確定在水壓試驗期間推薦的最冷金屬溫度和在氣動試驗期間允許的最冷金屬溫度。見 UG-99(h) 和 UG-100(c)。<br /></li>
+<li>或者，可以使用 S*E* 除以第 II 部分 D 部分第 1 子部分錶 1A 中的最大允許拉伸應力值乘以 E 的比值，其中 S* 是應用的一般初級膜拉伸應力和 E 和 E* 的定義見 Note (3)。<br /></li>
+<li>對於 UCS-66(b)(1)(-b) 和 UCS-66(i)(2)，MDMT 處的最大設計壓力與 MDMT 處的最大允許壓力 (MAP) 之比應為用過的。 MAP 定義為部件的設計方程式確定的最高允許壓力，該組件使用標稱厚度減去腐蝕裕量和 MDMT 第 II 部分 D 部分第 1 子部分錶 1A 中的最大允許應力值。對於 UCS-66(c) 中定義的鐵素體鋼法蘭，可以使用 MDMT 或 100°F (38°C) 溫度下的法蘭額定值作為 MAP。<br /></li>
+<li>對於 MDMT 降低至 40°F (22°C) 並包括在內，降低可以通過以下方式確定：MDMT 降低 = (1 - 比率) 100°F (56°C)。<br /></li>
+<li>可以根據需要選擇性地使用經過衝擊測試的材料來獲得更冷的 MDMT（參見 UG-84）。另見 UCS-68(c)。<br /></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="postamble"> 
+		 <a href="https://sites.google.com/view/each-application/homepage"> 
+		   各申機械設計工作室 </a> &nbsp;&nbsp;
+		 <a href="ya-bao-doc-database.html"> 
+		   壓寶計劃文件參考資料 </a>
+		</p>
+</div>
+</body>
+</html>
