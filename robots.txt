@@ -1,0 +1,7 @@
+User-agent:*
+Disallow:/doc/
+Disallow:/.git/
+Disallow:/maxima/
+Disallow:/pic/
+
+Sitemap: https://roscoe-tw.github.io/ya-bao-web/sitemap.xml

@@ -1,14 +1,21 @@
 #+TITLE: ya-bao-web-gh
 ya-bao-web 的 github pages 控制文件
 * index.html
+- [[file+emacs:index.org][index.org]]
   #+begin_src html :tangle index.html
     <!DOCTYPE html>
     <html>
       <head>
+	<meta charset="utf-8" />
+	<title>各申機械設計工作室工作記錄</title>
+	<link rel="shortcut icon" href="images/EA-logo.ico" />
+
 	<meta name="google-site-verification" content="6qFjj1TtFctlKH--W9gYQJ7MDsIjT6OzJtFhyU-Epz0" />
       </head>
       <body>
+	<h1>各申機械設計工作室工作記錄</h1>
 	<h1> Hellow world</h1>
+	<h1> <a href=
       </body>
     </html>  
   #+end_src
@@ -58,3 +65,13 @@ ya-bao-web 的 github pages 控制文件
   #+RESULTS:
   : #<SB-SYS:FD-STREAM for "file /tmp/sitemap.xml" {1003A703E3}>
 * blog.org
+* robots.txt
+#+begin_src text :tangle robots.txt
+  User-agent:*
+  Disallow:/doc/
+  Disallow:/.git/
+  Disallow:/maxima/
+  Disallow:/pic/
+  
+  Sitemap: https://roscoe-tw.github.io/ya-bao-web/sitemap.xml
+#+end_src
