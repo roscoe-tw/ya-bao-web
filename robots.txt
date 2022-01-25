@@ -3,5 +3,6 @@ Disallow:/doc/
 Disallow:/.git/
 Disallow:/maxima/
 Disallow:/pic/
+Allow: /
 
 Sitemap: https://roscoe-tw.github.io/ya-bao-web/sitemap.xml

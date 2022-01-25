@@ -2,7 +2,7 @@
 ya-bao-web 的 github pages 控制文件
 * index.html
 - [[file+emacs:index.org][index.org]]
-  #+begin_src html :tangle index.html
+  #+begin_src html 
     <!DOCTYPE html>
     <html>
       <head>
@@ -72,6 +72,7 @@ ya-bao-web 的 github pages 控制文件
   Disallow:/.git/
   Disallow:/maxima/
   Disallow:/pic/
+  Allow: /
   
   Sitemap: https://roscoe-tw.github.io/ya-bao-web/sitemap.xml
 #+end_src
