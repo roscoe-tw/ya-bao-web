@@ -68,11 +68,23 @@ ya-bao-web 的 github pages 控制文件
 * robots.txt
 #+begin_src text :tangle robots.txt
   User-agent:*
+  Disallow:/
+
+  User-agent:Googlebot
+  Disallow:/*.org$
   Disallow:/doc/
   Disallow:/.git/
   Disallow:/maxima/
   Disallow:/pic/
   Allow: /
-  
+
+  User-agent:bingbot
+  Disallow:/*.org$
+  Disallow:/doc/
+  Disallow:/.git/
+  Disallow:/maxima/
+  Disallow:/pic/
+  Allow: /
+
   Sitemap: https://roscoe-tw.github.io/ya-bao-web/sitemap.xml
 #+end_src
