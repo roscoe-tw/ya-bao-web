@@ -17,4 +17,4 @@ Disallow:/maxima/
 Disallow:/pic/
 Allow: /
 
-Sitemap: https://roscoe-tw.github.io/ya-bao-web/sitemap.xml
+Sitemap: https://roscoe-tw.github.io/ya-bao-web/ya-bao-web-sitemap
