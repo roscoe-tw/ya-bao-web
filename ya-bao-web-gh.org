@@ -26,7 +26,9 @@ ya-bao-web 的 github pages 控制文件
 * [[file+emacs:./blog.org][blog.org]]
 * sitemap
   使用 common lisp 產生 sitemap
-  #+begin_src lisp
+  #+begin_src lisp :tangle create-sitemap.lisp
+    ;;; tangled : ya-bao-web-gh.org
+
     (ql:quickload "cxml")
 
     (defun generate-sitemap (urls &optional (filename "./sitemap.xml"))
