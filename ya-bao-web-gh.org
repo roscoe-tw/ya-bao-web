@@ -61,6 +61,7 @@ ya-bao-web 的 github pages 控制文件
 		      "https://roscoe-tw.github.io/ya-bao-web/blog.html"
 		      (web-url "ya-bao-doc-database.html")
 		      (web-url "asme-viii-ucs-66.html")
+		      (web-url "electronic-circuit-simulation.html")
 		      (web-url "ya-bao-web-sitemap")))
   #+end_src
 
