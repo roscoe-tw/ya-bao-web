@@ -57,14 +57,19 @@ ya-bao-web 的 github pages 控制文件
       (format nil "https://roscoe-tw.github.io/ya-bao-web/~A" url))
 
     ;;; /tmp/sitemap.xml
-    (progn
-      (create-sitemap "./ya-bao-web-sitemap"
-		      "https://roscoe-tw.github.io/ya-bao-web/index.html"
-		      "https://roscoe-tw.github.io/ya-bao-web/blog.html"
-		      (web-url "ya-bao-doc-database.html")
-		      (web-url "asme-viii-ucs-66.html")
-		      (web-url "electronic-circuit-simulation.html")
-		      (web-url "ya-bao-web-sitemap")))
+    (defun to-create-sitemap ()
+      (let ((list1 (list "https://roscoe-tw.github.io/ya-bao-web/index.html"
+			 "https://roscoe-tw.github.io/ya-bao-web/blog.html"
+			 (web-url "ya-bao-doc-database.html")
+			 (web-url "asme-viii-ucs-66.html")
+			 (web-url "electronic-circuit-simulation.html")
+			 (web-url "sitemap.xml")
+			 (web-url "ya-bao-web-sitemap"))))
+	(progn
+	  (apply #'create-sitemap `("./ya-bao-web-sitemap" ,@list1))
+	  (apply #'create-sitemap `("./sitemap.xml" ,@list1)))))
+
+    (to-create-sitemap)
   #+end_src
 
   #+RESULTS:
