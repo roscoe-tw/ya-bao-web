@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2022-03-19 六 11:52 -->
+<!-- 2022-03-28 一 19:48 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>電子電路實作</title>
@@ -202,12 +202,12 @@
 <p>
 各申機械設計工作室有關電子電路模擬相關知識，包括模擬軟體、電子元件介紹及電子電路的應用開發。
 </p>
-<div id="outline-container-orgdf22e0f" class="outline-2">
-<h2 id="orgdf22e0f"><span class="section-number-2">1.</span> 電子電路模擬軟體</h2>
+<div id="outline-container-org4d87eb8" class="outline-2">
+<h2 id="org4d87eb8"><span class="section-number-2">1.</span> 電子電路模擬軟體</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org9c4b238" class="outline-3">
-<h3 id="org9c4b238"><span class="section-number-3">1.1.</span> <a href="https://www.simulide.com/p/home.html">SimulIDE</a></h3>
+<div id="outline-container-org482e34b" class="outline-3">
+<h3 id="org482e34b"><span class="section-number-3">1.1.</span> <a href="https://www.simulide.com/p/home.html">SimulIDE</a></h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生學習和實驗簡單的電子電路和微控制器，支持 PIC、AVR 和 Arduino。
@@ -215,8 +215,8 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </div>
 </div>
 </div>
-<div id="outline-container-org7aa9d47" class="outline-2">
-<h2 id="org7aa9d47"><span class="section-number-2">2.</span> 個人電腦控制微控制器實驗</h2>
+<div id="outline-container-orge93f2fd" class="outline-2">
+<h2 id="orge93f2fd"><span class="section-number-2">2.</span> 個人電腦控制微控制器實驗</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 一般提到自動控制、時序控制等系統有
@@ -233,8 +233,8 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </p></li>
 </ol>
 </div>
-<div id="outline-container-org5b58afc" class="outline-3">
-<h3 id="org5b58afc"><span class="section-number-3">2.1.</span> uLisp 介紹</h3>
+<div id="outline-container-org370c48e" class="outline-3">
+<h3 id="org370c48e"><span class="section-number-3">2.1.</span> uLisp 介紹</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 用於微控制器的 Lisp
@@ -246,39 +246,45 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </p>
 </div>
 </div>
-<div id="outline-container-org569faff" class="outline-3">
-<h3 id="org569faff"><span class="section-number-3">2.2.</span> 用 common lisp 控制 ulisp/ control ulisp with common lisp</h3>
+<div id="outline-container-org6c01370" class="outline-3">
+<h3 id="org6c01370"><span class="section-number-3">2.2.</span> 用 common lisp 控制 ulisp/ control ulisp with common lisp</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 使用 common lisp (SBCL) 經由序列埠控制安裝 ulisp 的 Arduino UNO 。
 </p>
 </div>
-<div id="outline-container-org9c495a9" class="outline-4">
-<h4 id="org9c495a9"><span class="section-number-4">2.2.1.</span> <span class="done DONE">DONE</span> 使用 SBCL 與 Arduino UNO 連線。</h4>
+<div id="outline-container-org37c2597" class="outline-4">
+<h4 id="org37c2597"><span class="section-number-4">2.2.1.</span> <span class="done DONE">DONE</span> 使用 SBCL 與 Arduino UNO 連線。</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 由於 Arduino UNO 的儲存空間不足，在安裝 uLisp 後，其 (load-image) 及 (same-image) 不足以保存太多的程式在晶片上。如果將程式由電腦傳上微控制器，則可以利用電腦的儲存空間及計算能力以增加應用的能力。
 </p>
 </div>
 </div>
-<div id="outline-container-org5e7bc34" class="outline-4">
-<h4 id="org5e7bc34"><span class="section-number-4">2.2.2.</span> <span class="done DONE">DONE</span> 利用 Emacs Slime mode 編寫 ulisp 程式，並上傳到 Arduino UNO。</h4>
+<div id="outline-container-org43b8f4b" class="outline-4">
+<h4 id="org43b8f4b"><span class="section-number-4">2.2.2.</span> <span class="done DONE">DONE</span> 利用 Emacs Slime mode 編寫 ulisp 程式，並上傳到 Arduino UNO。</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 經由 SBCL 的 REPL 連線可以搭配 Emacs 的 Slime 模組作為 uLisp 的 IDE。
 </p>
 </div>
 </div>
-<div id="outline-container-orge2dbe09" class="outline-4">
-<h4 id="orge2dbe09"><span class="section-number-4">2.2.3.</span> <span class="done DONE">DONE</span> 編寫 LED 矩陣應用，使用 MAX2719 晶片。</h4>
+<div id="outline-container-org0de31c8" class="outline-4">
+<h4 id="org0de31c8"><span class="section-number-4">2.2.3.</span> <span class="done DONE">DONE</span> 編寫 LED 矩陣應用，使用 MAX2719 晶片。</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 以 MAX2719 控制 8x8 LED 陣列。
 </p>
+<ul class="org-ul">
+<li><p>
+<a href="https://www.youtube.com/watch?v=ym0tLybkeCw">sbcl control max2719</a>
+</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/ym0tLybkeCw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></li>
+</ul>
 </div>
 </div>
-<div id="outline-container-org1d16132" class="outline-4">
-<h4 id="org1d16132"><span class="section-number-4">2.2.4.</span> <span class="todo TODO">TODO</span> 開發人機介面，以利控制 Arduino UNO</h4>
+<div id="outline-container-org899d9e3" class="outline-4">
+<h4 id="org899d9e3"><span class="section-number-4">2.2.4.</span> <span class="todo TODO">TODO</span> 開發人機介面，以利控制 Arduino UNO</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 以網站作為人機介面，以控制設備。
@@ -287,8 +293,8 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </div>
 </div>
 </div>
-<div id="outline-container-org374519f" class="outline-2">
-<h2 id="org374519f"><span class="section-number-2">3.</span> 各申機械設計工作室</h2>
+<div id="outline-container-orge81a109" class="outline-2">
+<h2 id="orge81a109"><span class="section-number-2">3.</span> 各申機械設計工作室</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
 <li><a href="https://sites.google.com/view/each-application/homepage">各申機械設計工作室</a>
