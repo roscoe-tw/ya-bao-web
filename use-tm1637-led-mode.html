@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
+<head>
+<!-- 2022-04-14 四 15:28 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>uLisp 點亮 TM1637 四位元七段顯示器</title>
+<meta name="author" content="各申機械設計工作室" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<meta name='description'  content='各申機械設計工作室，研究使用 lisp 驅動 4-bit desplay 。'/>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        displayAlign: "center",
+        displayIndent: "0em",
+
+        "HTML-CSS": { scale: 100,
+                        linebreaks: { automatic: "false" },
+                        webFont: "TeX"
+                       },
+        SVG: {scale: 100,
+              linebreaks: { automatic: "false" },
+              font: "TeX"},
+        NativeMML: {scale: 100},
+        TeX: { equationNumbers: {autoNumber: "AMS"},
+               MultLineWidth: "85%",
+               TagSide: "right",
+               TagIndent: ".8em"
+             }
+});
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">uLisp 點亮 TM1637 四位元七段顯示器</h1>
+<p>
+點亮一個四位數的七段顯示器很複雜也很簡單，簡單的是直接用 Arduino
+的範例去做就好，複雜的是自己想要自己生一個 lisp 驅動的程式&#x2026;
+</p>
+<div id="outline-container-org55cd430" class="outline-2">
+<h2 id="org55cd430"><span class="section-number-2">1.</span> 目標</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+建立 Arduino UNO 使用 uLisp 驅動的四位數七段顯示器的 API 。
+</p>
+</div>
+</div>
+<div id="outline-container-org2d0b89e" class="outline-2">
+<h2 id="org2d0b89e"><span class="section-number-2">2.</span> TM1637 IC 介紹</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+TM1637 是一種帶鍵盤掃描接口的 LED（發光二極管顯示器）驅動控制專用電路，內部集成了 MCU 數字接口、數據鎖存、LED 高壓驅動和鍵盤掃描。
+由於 TM1637 的傳輸介面並非正規的 \(I^2C\) ，所以要特別建立與 uLisp 溝通的方式。
+<a href="https://www.mcielectronics.cl/website_MCI/static/documents/Datasheet_TM1637.pdf">TM1637 Datasheet</a>
+</p>
+</div>
+</div>
+<div id="outline-container-org266b818" class="outline-2">
+<h2 id="org266b818"><span class="section-number-2">3.</span> 使用介面</h2>
+<div class="outline-text-2" id="text-3">
+<p>
+自製 common lisp 與 Arduino UNO 開發板連接的程式， cl-connect-arduino 。
+</p>
+</div>
+</div>
+<div id="outline-container-org7de1e3c" class="outline-2">
+<h2 id="org7de1e3c"><span class="section-number-2">4.</span> <span class="todo TODO">TODO</span> API 製作</h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org0f44a03" class="outline-3">
+<h3 id="org0f44a03"><span class="section-number-3">4.1.</span> <span class="done DONE">DONE</span> cl-connect-arduino 與 Arduino UNO 連接</h3>
+</div>
+<div id="outline-container-orgd2c4f6e" class="outline-3">
+<h3 id="orgd2c4f6e"><span class="section-number-3">4.2.</span> <span class="done DONE">DONE</span> 確認電子模組與 Arduino UNO 連接方式</h3>
+<div class="outline-text-3" id="text-4-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">模組</th>
+<th scope="col" class="org-left">Arduino UNO</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">CLK</td>
+<td class="org-left">Pin 2</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">DIO</td>
+<td class="org-left">Pin 3</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">VCC</td>
+<td class="org-left">5V</td>
+</tr>
+</tbody>
+<tbody>
+<tr>
+<td class="org-left">GND</td>
+<td class="org-left">GND</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org4b5c1f5" class="outline-2">
+<h2 id="org4b5c1f5"><span class="section-number-2">5.</span> common lisp</h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orgb84a8d6" class="outline-3">
+<h3 id="orgb84a8d6"><span class="section-number-3">5.1.</span> ulisp-led-4-bit-display.asd</h3>
+<div class="outline-text-3" id="text-5-1">
+<div class="org-src-container">
+<pre class="src src-lisp">  <span style="color: #fa8072;">;;;;</span><span style="color: #ff7f24; font-style: italic;">-*- Mode: LISP; Syntax: ANSI-Common-Lisp; Base: 10 -*-</span>
+(<span style="color: #00ffff;">in-package</span> <span style="color: #b0c4de;">:cl-user</span>)
+
+(asdf:defsystem <span style="color: #fa8072;">#:</span><span style="color: #f08080; font-style: italic;">ulisp-led-4-bit-display</span>
+  <span style="color: #b0c4de;">:description</span> <span style="color: #ffc1c1;">"uLisp control 4-bit display"</span>
+  <span style="color: #b0c4de;">:author</span> <span style="color: #ffc1c1;">"Colin Lu"</span>
+  <span style="color: #b0c4de;">:License</span> <span style="color: #ffc1c1;">"GPL"</span>
+  <span style="color: #b0c4de;">:version</span> <span style="color: #ffc1c1;">"0.0.1"</span>
+  <span style="color: #b0c4de;">:depends-on</span> (<span style="color: #ffc1c1;">"cl-connect-arduino"</span>)
+  <span style="color: #b0c4de;">:serial</span> t
+  <span style="color: #b0c4de;">:components</span> ((<span style="color: #b0c4de;">:file</span> <span style="color: #ffc1c1;">"packages"</span>)
+               (<span style="color: #b0c4de;">:file</span> <span style="color: #ffc1c1;">"ulisp-led-4-bit-display"</span>)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgfeaa6b4" class="outline-3">
+<h3 id="orgfeaa6b4"><span class="section-number-3">5.2.</span> packages.lisp</h3>
+<div class="outline-text-3" id="text-5-2">
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #00ffff;">in-package</span> <span style="color: #b0c4de;">:cl-user</span>)
+
+(<span style="color: #00ffff;">defpackage</span> <span style="color: #fa8072;">#:</span><span style="color: #f08080; font-style: italic;">ulisp-led-4-bit-display</span>
+  (<span style="color: #b0c4de;">:use</span> <span style="color: #fa8072;">#:</span><span style="color: #f08080; font-style: italic;">cl</span> <span style="color: #fa8072;">#:</span><span style="color: #f08080; font-style: italic;">cl-connect-arduino</span>))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org0fb30f5" class="outline-3">
+<h3 id="org0fb30f5"><span class="section-number-3">5.3.</span> ulisp-led-4-bit-display.lisp</h3>
+<div class="outline-text-3" id="text-5-3">
+<div class="org-src-container">
+<pre class="src src-lisp">(<span style="color: #00ffff;">in-package</span> <span style="color: #b0c4de;">:ulisp-led-4-bit-display</span>)
+
+(<span style="color: #00ffff;">defmacro</span> <span style="color: #00fa9a; font-weight: bold;">run-command-arduino</span> (<span style="color: #63b8ff;">&amp;body</span> body)
+  (<span style="color: #00ffff;">let</span> ((commands (gensym))
+        (serial-name (gensym)))
+    `(<span style="color: #00ffff;">let</span> ((,commands '(,@body))
+           (,serial-name ,*arduino-serial*))
+       (<span style="color: #00ffff;">dolist</span> (x ,commands)
+         (arduino-command ,serial-name (apply #'list x))))))
+
+
+(<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">tm1637-set</span> ()
+  (run-command-arduino
+    (<span style="color: #00ffff;">defvar</span> <span style="color: #7fffd4;">*scl*</span> 2)
+    (<span style="color: #00ffff;">defvar</span> <span style="color: #7fffd4;">*sda*</span> 3)
+    (<span style="color: #00ffff;">defvar</span> <span style="color: #7fffd4;">*delaytime*</span> 5)
+
+    (<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">tm1637</span> ()
+      (pinmode *scl* <span style="color: #b0c4de;">:output</span>)
+      (pinmode *sda* <span style="color: #b0c4de;">:output</span>)
+      (digitalwrite *scl* <span style="color: #b0c4de;">:high</span>)
+      (digitalwrite *sda* <span style="color: #b0c4de;">:high</span>))
+
+    <span style="color: #fa8072;">;;</span><span style="color: #ff7f24; font-style: italic;">&#23450;&#32681;&#33139;&#20301;&#29376;&#27841;</span>
+    (tm1637) 
+
+    (<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">start</span> ()
+      (digitalwrite *scl* <span style="color: #b0c4de;">:high</span>)
+      (digitalwrite *sda* <span style="color: #b0c4de;">:high</span>)
+      (digitalwrite *sda* <span style="color: #b0c4de;">:low</span>)
+      (bitdelay)
+      (digitalwrite *scl* <span style="color: #b0c4de;">:low</span>)
+      (format t <span style="color: #ffc1c1;">"~&amp;start~%"</span>))
+
+    (<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">stop</span> ()
+      (digitalwrite *scl* <span style="color: #b0c4de;">:low</span>)
+      (digitalwrite *sda* <span style="color: #b0c4de;">:low</span>)
+      (digitalwrite *scl* <span style="color: #b0c4de;">:high</span>)
+      (bitdelay)
+      (digitalwrite *sda* <span style="color: #b0c4de;">:high</span>)
+      (format t <span style="color: #ffc1c1;">"~&amp;stop~%"</span>))
+
+    (<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">re-start</span> ()
+      (stop)
+      (start))
+
+    (<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">writebyte</span> (data)
+      (<span style="color: #00ffff;">let</span> ((ack t))
+        <span style="color: #fa8072;">;;</span><span style="color: #ff7f24; font-style: italic;">(format t "~&amp;data: ~A~%" data)</span>
+        (<span style="color: #00ffff;">dotimes</span> (x 8)
+          (<span style="color: #00ffff;">let</span> ((high-p (logbitp x data)))
+            (digitalwrite *scl* <span style="color: #b0c4de;">:low</span>)
+            (<span style="color: #00ffff;">if</span> high-p
+                (digitalwrite *sda* <span style="color: #b0c4de;">:high</span>)
+                (digitalwrite *sda* <span style="color: #b0c4de;">:low</span>))
+            <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">(format t "~A " high-p)</span>
+            (digitalwrite *scl* <span style="color: #b0c4de;">:high</span>)))
+        (digitalwrite *scl* <span style="color: #b0c4de;">:low</span>)
+        <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">wait for the ack</span>
+        (digitalwrite *sda* <span style="color: #b0c4de;">:high</span>)
+        (digitalwrite *scl* <span style="color: #b0c4de;">:high</span>)
+        (pinmode *sda* <span style="color: #b0c4de;">:input</span>)
+        <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">(format t "~&amp;~A ~A" (digitalread *sda*) (digitalread *scl*))</span>
+        (bitdelay)
+        <span style="color: #fa8072;">;;</span><span style="color: #ff7f24; font-style: italic;">(format t "~&amp;ack :~A~%" ack)</span>
+        (setf ack (digitalread *sda*))
+        <span style="color: #fa8072;">;;</span><span style="color: #ff7f24; font-style: italic;">(format t "~&amp;ack :~A~%" ack)</span>
+        (<span style="color: #00ffff;">unless</span> ack
+          (pinmode *sda* <span style="color: #b0c4de;">:output</span>)
+          (digitalwrite *sda* <span style="color: #b0c4de;">:low</span>))
+
+        (bitdelay)
+        (digitalwrite *sda* <span style="color: #b0c4de;">:high</span>)
+        (bitdelay)
+        ack))
+
+    (<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">bitdelay</span> (<span style="color: #63b8ff;">&amp;optional</span> (times *delaytime*))
+      (delay times))
+
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">(defun display (bit-addr disp-data)</span>
+    <span style="color: #fa8072;">;;   </span><span style="color: #ff7f24; font-style: italic;">(let ((addr-fixed #x44)</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">     (addr-auto #x40))</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (start)</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (writebyte addr-fixed) ;; command1</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (stop)</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (start)</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (writebyte (or bit-addr #xc0)) ;;command2</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (writebyte disp-data)</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (stop)</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (start)</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (writebyte #x8f) ;; cmd_disp_ctrl, command3</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> (stop)</span>
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;"> ))</span>
+    ))
+
+(<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">all-bright</span> ()
+  (run-command-arduino 
+    (tm1637)
+    (start)
+    (writebyte #x40)
+    (re-start)
+    (writebyte #xc0)
+    <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">(dotimes (x 6)</span>
+    <span style="color: #fa8072;">;;   </span><span style="color: #ff7f24; font-style: italic;">;; &#25163;&#21205;&#35373;&#23450;</span>
+    <span style="color: #fa8072;">;;   </span><span style="color: #ff7f24; font-style: italic;">;;(writebyte #xff)</span>
+    <span style="color: #fa8072;">;;   </span><span style="color: #ff7f24; font-style: italic;">(writebyte #xff)</span>
+    (<span style="color: #00ffff;">dolist</span> (x '(#x38 #x06 #x6d #x73 #xff #xff))
+      (writebyte x))
+    (re-start)
+    (writebyte #x8f)
+    (stop)))
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb7f5682" class="outline-3">
+<h3 id="orgb7f5682"><span class="section-number-3">5.4.</span> 程式重點</h3>
+<div class="outline-text-3" id="text-5-4">
+<ul class="org-ul">
+<li>要注意 I2C format 位元讀取時間是在 scl 高位元才會讀取，sda 在 scl 低位元時變換才有效。</li>
+<li>在 scl 高位元變換 sda 訊號時，為 start 位元，及 stop 位元</li>
+<li>一定要等 ack 位元回傳</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org74bdc60" class="outline-2">
+<h2 id="org74bdc60"><span class="section-number-2">6.</span> 參考</h2>
+<div class="outline-text-2" id="text-6">
+<ul class="org-ul">
+<li><a href="https://www.strongpilab.com/i2c-introduction">I2C-協定用法原理簡介-晶片溝通的橋樑</a></li>
+<li><a href="https://swf.com.tw/?p=715%3E%03%3A">串入並出的IC 74HC595補充說明：串聯多個74HC595 的Arduino程式示範</a></li>
+<li><a href="https://www.arduino.cc/reference/en/libraries/grove-4-digit-display/">Grove 4-Digit Display</a></li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
