@@ -63,6 +63,7 @@ ya-bao-web 的 github pages 控制文件
 			 (web-url "ya-bao-doc-database.html")
 			 (web-url "asme-viii-ucs-66.html")
 			 (web-url "electronic-circuit-simulation.html")
+			 (web-url "use-tm1637-led-mode.html")
 			 (web-url "sitemap.xml")
 			 (web-url "ya-bao-web-sitemap"))))
 	(progn
