@@ -44,6 +44,12 @@
  </url>
  <url>
   <loc>
+   https://roscoe-tw.github.io/ya-bao-web/ya-bao-working-environment.html</loc>
+  <priority>
+   0.5</priority>
+ </url>
+ <url>
+  <loc>
    https://roscoe-tw.github.io/ya-bao-web/sitemap.xml</loc>
   <priority>
    0.5</priority>
