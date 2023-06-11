@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2023-06-11 日 22:50 -->
+<!-- 2023-06-11 日 22:41 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>BLOG</title>
+<title>autlisp Big5/ UTF-8 字碼 中文字字元數的計算</title>
 <meta name="author" content="各申機械設計工作室" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -194,88 +194,114 @@
   .org-svg { width: 90%; }
 </style>
 <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
-<meta name='description'  content='各申機械設計工作室作業相關記錄，包括機械設計開發及程式設計。'/>
+<meta name='description'  content='autlisp Big5/ UTF-8 字碼 中文字字元數的計算'/>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">BLOG</h1>
-<div id="outline-container-org27b577d" class="outline-2">
-<h2 id="org27b577d"><span class="section-number-2">1.</span> <a href="index.html">資料整合</a></h2>
-</div>
-<div id="outline-container-org9b4eaac" class="outline-2">
-<h2 id="org9b4eaac"><span class="section-number-2">2.</span> <a href="https://sites.google.com/view/each-application/homepage">各申機械設計工作室</a></h2>
-<div class="outline-text-2" id="text-2">
-<ul class="org-ul">
-<li><a href="https://sites.google.com/view/each-application/pressure-vessel-design">壓力容器設計服務</a></li>
-<li><a href="https://sites.google.com/view/each-application/pressure-vessel-design/project-design-process">工程設計案流程</a></li>
-<li><a href="https://sites.google.com/view/each-application/pressure-vessel-design/service-performance">服務實績</a></li>
-<li><a href="https://sites.google.com/view/each-application/pressure-vessel-design/%E5%A3%93%E5%8A%9B%E5%AE%B9%E5%99%A8%E8%A8%AD%E8%A8%88%E8%AB%AE%E8%A9%A2">壓力容器設計諮詢</a></li>
-</ul>
-</div>
-<div id="outline-container-org0d9ccc2" class="outline-3">
-<h3 id="org0d9ccc2"><span class="section-number-3">2.1.</span> <a href="https://ya-bao.blogspot.com/">壓寶計劃 : 壓力容器保健計劃</a></h3>
-<div class="outline-text-3" id="text-2-1">
+<h1 class="title">autlisp Big5/ UTF-8 字碼 中文字字元數的計算</h1>
+<div id="outline-container-orgbe2aee3" class="outline-2">
+<h2 id="orgbe2aee3"><span class="section-number-2">1.</span> 前言</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-壓力容器機械設計相關議題：包含建造法規內容、工程文件及程式設計等。
+在 Autocad 2022 之前的 autolisp 函數 (strlen "字串") 它會返回字串的字元數，但是有一個特殊現象是它會把中文字的字元數以 1 個中文字元返回字元數為 2。
+然而在 Autocad 2022 以後，和 BricsCAD 相同，其設定為一個中文字為一個字元。這也許是 Autocad 2022 年之後正式支援 UTF-8 字碼輸出有關。想當年編寫 autolisp 要顯示中文時還特定將檔案指定成 Big5 碼，以避免產生亂碼，還質疑為什麼 autocad 不支援 UTF-8 的檔案。
+</p>
+<p class="verse">
+;;; autocad 2022 之前<br />
+指令：(strlen "中文")<br />
+4<br />
+<br />
+;;; autocad 2022 後及 BricsCAD<br />
+指令：(strlen "中文")<br />
+2<br />
 </p>
 
-<div id="org4db8546" class="figure">
-<p><img src="./images/ya-bao/ya-bao-project-logo-2021-2.png" alt="壓寶計劃：壓力容器保健計劃。由各申機械設計工作室維護。" width="120" />
+<p>
+現在朋友遇到了一個問題，那就是他的客戶有許多程式是需要使用 (stelen &#x2026;) 來計算字串的字元數的，但是在 Autocad 2022 後，其 autolisp 程式在應用上會造成與之前版本的工具有所偏差。以致於無法引入 Autocad 2022 或是 BricsCAD 等工具。
+以下程式可以先解燃眉之急，但是以長遠來看，未來還是要檢示一下程式中是否要修正的地方。
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb8d791e" class="outline-4">
-<h4 id="orgb8d791e"><span class="section-number-4">2.1.1.</span> <a href="https://ya-bao.blogspot.com/2021/06/design-a-flat-bottomed-water-storage-tank.html">壓寶計劃:設計平底儲水槽</a></h4>
+<div id="outline-container-orgaab12a1" class="outline-2">
+<h2 id="orgaab12a1"><span class="section-number-2">2.</span> 原始碼</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+這個程式是以中文字與英文字及符號為區分字元數。希望以 (cs-to-strlen "字串") 取代僅以 (strlen "字串") 去判斷返回的字元數。而這個程式無法如 (strlen &#x2026;) 接受不同型式的引數；如 (strlen)、(strlen "字串1") 或 (strlen "字串1" "字串2" "字串3")等等。
+也就是它只能使用一個引數。例子如下
+</p>
+<p class="verse">
+;;; autocad / bricscad<br />
+指令：(cs-to-strlen "中文12345")<br />
+9<br />
+指令：(cs-to-strlen "中文 abcd")<br />
+9<br />
+指令：(cs-to-strlen "123中文 abcd")<br />
+12<br />
+</p>
+<p>
+如果以 (cs-to-strlen &#x2026;) 取代 (strlen &#x2026;) 修改程式，並且注意引數的型式，它可以支援以前的程式，無論 CAD 軟體是否有支援 UTF-8 字碼。(cs-to-strlen "字串")可以返回舊有程式中計算字串 1 中文字 2 字元數的數值。
+現階段已經在 AutoCAD 2017/ AutoCAD 2022/ AutoCAD 2024 及 BricsCAD 2023 測試可行。
+</p>
 </div>
-<div id="outline-container-org3ae8ac1" class="outline-4">
-<h4 id="org3ae8ac1"><span class="section-number-4">2.1.2.</span> <a href="https://ya-bao.blogspot.com/2021/03/UDR.html">壓寶計劃:如何準備使用者設計需求/UDR</a></h4>
+<div id="outline-container-orga973fcb" class="outline-3">
+<h3 id="orga973fcb"><span class="section-number-3">2.1.</span> cs-to-strlen.lsp</h3>
+<div class="outline-text-3" id="text-2-1">
+<div class="org-src-container">
+<pre class="src src-lisp"><span style="color: #fa8072;">;;;; </span><span style="color: #ff7f24; font-style: italic;">-*- encoding:big5 -*-</span>
+<span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">autocad 2022 (Big5/ UTF-8) &#20013;&#25991;&#23383;&#23383;&#20803;&#25976;&#30340;&#35336;&#31639;</span>
+
+<span style="color: #fa8072;">;;; </span><span style="color: #ff7f24; font-style: italic;">&#37325;&#36617;&#21407;&#22987;&#30908;</span>
+(<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">reload-file</span> (filename)
+  (load filename)
+  (print (strcat filename <span style="color: #ffc1c1;">" &#24050;&#35712;&#21462;!"</span>))
+  (princ))
+
+(<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">c:rrr-cs-to-strlen</span> ()
+  (reload-file <span style="color: #ffc1c1;">"cs-to-strlen.lsp"</span>))
+
+(<span style="color: #00ffff;">defun</span> <span style="color: #00fa9a; font-weight: bold;">cs-to-strlen</span> (str / num fig1 sum)
+  <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">Big5 &#20013;&#23383;&#23383;&#20301;&#35336;&#31639;</span>
+  (<span style="color: #00ffff;">if</span> (&gt; (strlen <span style="color: #ffc1c1;">"&#20013;"</span>) 1)
+      (<span style="color: #00ffff;">progn</span>
+        <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">(print "&gt;1")</span>
+        (strlen str))
+      (<span style="color: #00ffff;">progn</span>
+        (setq num (strlen str)
+              fing1 0
+              sum 0)
+        <span style="color: #fa8072;">;; </span><span style="color: #ff7f24; font-style: italic;">(print num)</span>
+        (<span style="color: #00ffff;">while</span> (&lt; 0 num)
+               (<span style="color: #00ffff;">if</span> (&gt; (ascii (substr str 1 1)) 128)
+                   (setq sum (+ sum 2))
+                   (setq sum (1+ sum)))
+               (setq str (substr str 2))
+               (setq num (1- num)))
+        sum)))
+</pre>
 </div>
-<div id="outline-container-org8ac2475" class="outline-4">
-<h4 id="org8ac2475"><span class="section-number-4">2.1.3.</span> <a href="https://ya-bao.blogspot.com/2022/01/pressure-vessel-design-minimum-design-metal-temperature.html">壓力容器設計：最低設計金屬溫度 (MDMT)</a></h4>
-</div>
-<div id="outline-container-orgc8c67e6" class="outline-4">
-<h4 id="orgc8c67e6"><span class="section-number-4">2.1.4.</span> <a href="./ya-bao-doc-database.html">壓寶計劃文件參考資料</a></h4>
-</div>
-<div id="outline-container-org954a727" class="outline-4">
-<h4 id="org954a727"><span class="section-number-4">2.1.5.</span> <a href="flange-type.html">壓寶計劃: 法蘭(凸緣)的形式/ Flange Type</a></h4>
-</div>
-<div id="outline-container-orgf133c65" class="outline-4">
-<h4 id="orgf133c65"><span class="section-number-4">2.1.6.</span> <a href="sequence-for-tightening-of-flange-bolts.html">壓寶計劃: 法蘭螺栓擰緊順序/ Sequence for tightening of flange bolts.</a></h4>
 </div>
 </div>
-<div id="outline-container-orgae25744" class="outline-3">
-<h3 id="orgae25744"><span class="section-number-3">2.2.</span> <a href="https://sites.google.com/view/each-application/software-design/graphics-design/autolisp-draw-head-cylinder">Autolisp 繪製端板及圓桶形</a></h3>
+
+<div id="outline-container-org35af0da" class="outline-3">
+<h3 id="org35af0da"><span class="section-number-3">2.2.</span> 版權宣告/ Copyright notice</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
-使用 autolisp 繪製近似半橢圓端板、碟形端板及圓桶形圖形。並提供原始碼說明。
+Copyright (C) 2023 Each Application Mechanical Design Studio
 </p>
+
+
+<p>
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+</p>
+
+<p>
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+</p>
+
+<p>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
 </div>
-</div>
-<div id="outline-container-orgf072251" class="outline-3">
-<h3 id="orgf072251"><span class="section-number-3">2.3.</span> <a href="https://roscoe-tw.github.io/ya-bao-web/cs-to-strlen.html">autlisp Big5/ UTF-8 字碼 中文字字元數的計算</a></h3>
-</div>
-</div>
-<div id="outline-container-org2516b59" class="outline-2">
-<h2 id="org2516b59"><span class="section-number-2">3.</span> <a href="https://roscoe-tw.github.io/ya-bao-web/obs-application-planning/application.html">OBS 應用企劃</a></h2>
-</div>
-<div id="outline-container-orgb35aaf8" class="outline-2">
-<h2 id="orgb35aaf8"><span class="section-number-2">4.</span> 微控制器</h2>
-<div class="outline-text-2" id="text-4">
-</div>
-<div id="outline-container-org92e4994" class="outline-3">
-<h3 id="org92e4994"><span class="section-number-3">4.1.</span> <a href="https://ya-bao.blogspot.com/2022/02/ulisp-s-save-image-and-load-image.html">uLisp 的 save-image 與 load-image</a></h3>
-</div>
-<div id="outline-container-orgfe0d0fe" class="outline-3">
-<h3 id="orgfe0d0fe"><span class="section-number-3">4.2.</span> <a href="electronic-circuit-simulation.html">電子電路實作</a></h3>
-</div>
-</div>
-<div id="outline-container-orgde5dfd3" class="outline-2">
-<h2 id="orgde5dfd3"><span class="section-number-2">5.</span> common lisp</h2>
-<div class="outline-text-2" id="text-5">
-</div>
-<div id="outline-container-orgb8247ab" class="outline-3">
-<h3 id="orgb8247ab"><span class="section-number-3">5.1.</span> <a href="https://ya-bao.blogspot.com/2021/05/common-lisp-in-the-USB-flash-drive.html">將 common lisp 放在 USB 隨身碟中</a></h3>
 </div>
 </div>
 </div>
