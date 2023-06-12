@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2023-06-11 日 22:41 -->
+<!-- 2023-06-12 一 08:55 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>autlisp Big5/ UTF-8 字碼 中文字字元數的計算</title>
@@ -199,12 +199,12 @@
 <body>
 <div id="content" class="content">
 <h1 class="title">autlisp Big5/ UTF-8 字碼 中文字字元數的計算</h1>
-<div id="outline-container-orgbe2aee3" class="outline-2">
-<h2 id="orgbe2aee3"><span class="section-number-2">1.</span> 前言</h2>
+<div id="outline-container-orgad77f8f" class="outline-2">
+<h2 id="orgad77f8f"><span class="section-number-2">1.</span> 前言</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 在 Autocad 2022 之前的 autolisp 函數 (strlen "字串") 它會返回字串的字元數，但是有一個特殊現象是它會把中文字的字元數以 1 個中文字元返回字元數為 2。
-然而在 Autocad 2022 以後，和 BricsCAD 相同，其設定為一個中文字為一個字元。這也許是 Autocad 2022 年之後正式支援 UTF-8 字碼輸出有關。想當年編寫 autolisp 要顯示中文時還特定將檔案指定成 Big5 碼，以避免產生亂碼，還質疑為什麼 autocad 不支援 UTF-8 的檔案。
+然而在 Autocad 2022 以後，和 BricsCAD 相同，其設定為一個中文字為一個字元。這也許是 Autocad 2022 年之後正式支援 UTF-8 字碼輸出有關。想當年編寫 autolisp 要顯示中文時還特定將檔案文字編碼指定成 Big5 碼，以避免載入 Autocad 時產生亂碼。我們也一直質疑為什麼 autocad 不支援 UTF-8 的檔案。
 </p>
 <p class="verse">
 ;;; autocad 2022 之前<br />
@@ -223,12 +223,12 @@
 </div>
 </div>
 
-<div id="outline-container-orgaab12a1" class="outline-2">
-<h2 id="orgaab12a1"><span class="section-number-2">2.</span> 原始碼</h2>
+<div id="outline-container-orgf9c437f" class="outline-2">
+<h2 id="orgf9c437f"><span class="section-number-2">2.</span> 原始碼</h2>
 <div class="outline-text-2" id="text-2">
 <p>
-這個程式是以中文字與英文字及符號為區分字元數。希望以 (cs-to-strlen "字串") 取代僅以 (strlen "字串") 去判斷返回的字元數。而這個程式無法如 (strlen &#x2026;) 接受不同型式的引數；如 (strlen)、(strlen "字串1") 或 (strlen "字串1" "字串2" "字串3")等等。
-也就是它只能使用一個引數。例子如下
+這個程式是以中文字與英文字及符號為區分字元數。希望以 (cs-to-strlen "字串") 取代僅以 (strlen "字串") 去判斷返回的字元數。然而這個程式無法如 (strlen &#x2026;) 接受不同型式的引數；如 (strlen)、(strlen "字串1") 或 (strlen "字串1" "字串2" "字串3")等等。
+也就是說它只能使用一個引數。例子如下
 </p>
 <p class="verse">
 ;;; autocad / bricscad<br />
@@ -244,8 +244,8 @@
 現階段已經在 AutoCAD 2017/ AutoCAD 2022/ AutoCAD 2024 及 BricsCAD 2023 測試可行。
 </p>
 </div>
-<div id="outline-container-orga973fcb" class="outline-3">
-<h3 id="orga973fcb"><span class="section-number-3">2.1.</span> cs-to-strlen.lsp</h3>
+<div id="outline-container-orgae626c5" class="outline-3">
+<h3 id="orgae626c5"><span class="section-number-3">2.1.</span> cs-to-strlen.lsp</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-lisp"><span style="color: #fa8072;">;;;; </span><span style="color: #ff7f24; font-style: italic;">-*- encoding:big5 -*-</span>
@@ -283,8 +283,8 @@
 </div>
 </div>
 
-<div id="outline-container-org35af0da" class="outline-3">
-<h3 id="org35af0da"><span class="section-number-3">2.2.</span> 版權宣告/ Copyright notice</h3>
+<div id="outline-container-orgcbe6b5a" class="outline-3">
+<h3 id="orgcbe6b5a"><span class="section-number-3">2.2.</span> 版權宣告/ Copyright notice</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Copyright (C) 2023 Each Application Mechanical Design Studio
@@ -300,7 +300,8 @@ The above copyright notice and this permission notice shall be included in all c
 </p>
 
 <p>
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+</p>
 </div>
 </div>
 </div>
