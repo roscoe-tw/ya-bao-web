@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2023-06-12 一 08:55 -->
+<!-- 2023-06-12 一 09:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>autlisp Big5/ UTF-8 字碼 中文字字元數的計算</title>
@@ -199,8 +199,8 @@
 <body>
 <div id="content" class="content">
 <h1 class="title">autlisp Big5/ UTF-8 字碼 中文字字元數的計算</h1>
-<div id="outline-container-orgad77f8f" class="outline-2">
-<h2 id="orgad77f8f"><span class="section-number-2">1.</span> 前言</h2>
+<div id="outline-container-org259426d" class="outline-2">
+<h2 id="org259426d"><span class="section-number-2">1.</span> 前言</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 在 Autocad 2022 之前的 autolisp 函數 (strlen "字串") 它會返回字串的字元數，但是有一個特殊現象是它會把中文字的字元數以 1 個中文字元返回字元數為 2。
@@ -223,8 +223,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgf9c437f" class="outline-2">
-<h2 id="orgf9c437f"><span class="section-number-2">2.</span> 原始碼</h2>
+<div id="outline-container-org20daac5" class="outline-2">
+<h2 id="org20daac5"><span class="section-number-2">2.</span> 原始碼</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 這個程式是以中文字與英文字及符號為區分字元數。希望以 (cs-to-strlen "字串") 取代僅以 (strlen "字串") 去判斷返回的字元數。然而這個程式無法如 (strlen &#x2026;) 接受不同型式的引數；如 (strlen)、(strlen "字串1") 或 (strlen "字串1" "字串2" "字串3")等等。
@@ -244,8 +244,8 @@
 現階段已經在 AutoCAD 2017/ AutoCAD 2022/ AutoCAD 2024 及 BricsCAD 2023 測試可行。
 </p>
 </div>
-<div id="outline-container-orgae626c5" class="outline-3">
-<h3 id="orgae626c5"><span class="section-number-3">2.1.</span> cs-to-strlen.lsp</h3>
+<div id="outline-container-org4d1bfad" class="outline-3">
+<h3 id="org4d1bfad"><span class="section-number-3">2.1.</span> cs-to-strlen.lsp</h3>
 <div class="outline-text-3" id="text-2-1">
 <div class="org-src-container">
 <pre class="src src-lisp"><span style="color: #fa8072;">;;;; </span><span style="color: #ff7f24; font-style: italic;">-*- encoding:big5 -*-</span>
@@ -283,8 +283,8 @@
 </div>
 </div>
 
-<div id="outline-container-orgcbe6b5a" class="outline-3">
-<h3 id="orgcbe6b5a"><span class="section-number-3">2.2.</span> 版權宣告/ Copyright notice</h3>
+<div id="outline-container-orgf3f4fae" class="outline-3">
+<h3 id="orgf3f4fae"><span class="section-number-3">2.2.</span> 版權宣告/ Copyright notice</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 Copyright (C) 2023 Each Application Mechanical Design Studio
@@ -304,6 +304,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 </p>
 </div>
 </div>
+</div>
+
+<div id="outline-container-org6996a1f" class="outline-2">
+<h2 id="org6996a1f"><span class="section-number-2">3.</span> <a href="https://sites.google.com/view/each-application/homepage">各申機械設計工作室/ Each Application Mechanical Design Studio</a></h2>
 </div>
 </div>
 </body>
