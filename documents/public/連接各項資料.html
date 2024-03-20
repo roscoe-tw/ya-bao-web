@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
+<head>
+<!-- 2024-03-20 三 14:43 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>連接各項資料</title>
+<meta name="author" content="各申機械設計工作室" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">連接各項資料</h1>
+
+<div id="outline-container-orgb50661c" class="outline-2">
+<h2 id="orgb50661c"><span class="section-number-2">1.</span> 說明</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+壓力容器設計是完整的機械設計實作成果之一；完成一份壓力容器設計需要：
+</p>
+
+<ol class="org-ol">
+<li>了解使用者的需求。</li>
+<li>設計桶槽圖面及說明文件。</li>
+<li>配合需求並遵循設計法規制作強度計算書。</li>
+<li>了解壓力容器設計使用的材質。</li>
+<li>確認壓力容器如何驗收。</li>
+</ol>
+
+<p>
+以上內容分散在各種文件之中。我們如果要整理文件在一起，通常是使用單一文件並且如書籍目錄需要整理完整；或者在電腦、網路上使用網頁並連接各種文件。首先使用單一文件整合起來，在終極結果就是一份設計文件報告，有封面、綱要及目錄等等&#x2026;&#x2026; 其實就是排版作業，看大家想用 MS Office  或是  Libreoffice 去準備文件；選擇其他排版作業統整文件。第二方式使用 HTML 連接各種設計文件，雖然這個比較專業但是比較方便，因為好用的超連接的模式，需要看什麼資料只要點入就會顯示相關資料。雖然如 Libreoffice 所制作的文件也可以轉換成 html ，但是實際上它還是一個二進位制的檔案格式，必須由可以讀取它和執行內容的應用程式才可以使用，其應用層面就降低了很多。再來壓力容器的設計文件在核可前會進版本次很多遍，如果可以搭配版本控制軟體如 git ，可以控制設計文件的制作進度，並適時的改版分支作業。
+</p>
+
+<p>
+以壓力容器設計文件，用一個文件管理各項文件方式如下。使用 emacs 的 org mode 。製作一個 package.org 。串連一個《使用者設計需求》、設計圖、內壓計算書和重量計算書。
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgeea098c" class="outline-2">
+<h2 id="orgeea098c"><span class="section-number-2">2.</span> package.org</h2>
+<div class="outline-text-2" id="text-2">
+<div class="org-src-container">
+<pre class="src src-text">* &#20351;&#29992;&#32773;&#35373;&#35336;&#38656;&#27714;/ UDR
+#+ATTR_HTML: :width 900px
+[[img/udr-034-11209-001-rev0-1.png]]
+#+ATTR_HTML: :width 900px
+[[img/udr-034-11209-001-rev0-2.png]]
+** &#35373;&#35336;&#22294;
+[[https://youtu.be/pyYjD396wxI]]
+* &#20839;&#22739;&#35336;&#31639;
+** &#31471;&#26495;
+** &#27580;&#26495;
+* &#37325;&#37327;&#35336;&#31639;
+
+</pre>
+</div>
+</div>
+<div id="outline-container-org2f3b4c1" class="outline-3">
+<h3 id="org2f3b4c1"><span class="section-number-3">2.1.</span> 相關連接的資料</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li><p>
+使用者設計需求/ UDR
+</p>
+
+<div id="orga6a5ae5" class="figure">
+<p><img src="img/udr-034-11209-001-rev0-1.png" alt="udr-034-11209-001-rev0-1.png" width="900px" />
+</p>
+</div>
+
+<div id="org331e601" class="figure">
+<p><img src="img/udr-034-11209-001-rev0-2.png" alt="udr-034-11209-001-rev0-2.png" width="900px" />
+</p>
+</div></li>
+<li>設計圖</li>
+</ul>
+<p>
+<a href="https://youtu.be/pyYjD396wxI">https://youtu.be/pyYjD396wxI</a>
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org52f20b9" class="outline-2">
+<h2 id="org52f20b9"><span class="section-number-2">3.</span> 相關資料</h2>
+<div class="outline-text-2" id="text-3">
+
+<div id="orgac8e96d" class="figure">
+<p><img src="img/EA-name-20220514.png" alt="EA-name-20220514.png" width="600px" />
+</p>
+</div>
+<ul class="org-ul">
+<li><a href="https://duckduckgo.com/?q=%E5%A3%93%E5%8A%9B%E5%AE%B9%E5%99%A8%E8%A8%88%E7%AE%97+%E5%90%84%E7%94%B3%E6%A9%9F%E6%A2%B0%E8%A8%AD%E8%A8%88%E5%B7%A5%E4%BD%9C%E5%AE%A4&amp;amp;ia=web">各申機械設計工作室相關資料</a></li>
+</ul>
+</div>
+</div>
+</div>
+</body>
+</html>
