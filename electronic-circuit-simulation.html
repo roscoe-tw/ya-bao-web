@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2022-04-14 四 15:28 -->
+<!-- 2024-03-20 三 11:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>電子電路實作</title>
@@ -191,10 +191,12 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
 <meta name='description'  content='各申機械設計工作室，電子電路模擬相關知識，包括模擬軟體、電子元件介紹及電子電路的應用開發。'/>
+<link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<meta name='description'  content='聯絡各申機械設計工作室。'/>
 </head>
 <body>
 <div id="content" class="content">
@@ -202,12 +204,12 @@
 <p>
 各申機械設計工作室有關電子電路模擬相關知識，包括模擬軟體、電子元件介紹及電子電路的應用開發。
 </p>
-<div id="outline-container-org8438639" class="outline-2">
-<h2 id="org8438639"><span class="section-number-2">1.</span> 電子電路模擬軟體</h2>
+<div id="outline-container-orge4161ed" class="outline-2">
+<h2 id="orge4161ed"><span class="section-number-2">1.</span> 電子電路模擬軟體</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org6cfe48a" class="outline-3">
-<h3 id="org6cfe48a"><span class="section-number-3">1.1.</span> <a href="https://www.simulide.com/p/home.html">SimulIDE</a></h3>
+<div id="outline-container-org8b9b2f7" class="outline-3">
+<h3 id="org8b9b2f7"><span class="section-number-3">1.1.</span> <a href="https://www.simulide.com/p/home.html">SimulIDE</a></h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生學習和實驗簡單的電子電路和微控制器，支持 PIC、AVR 和 Arduino。
@@ -215,8 +217,8 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </div>
 </div>
 </div>
-<div id="outline-container-org7734785" class="outline-2">
-<h2 id="org7734785"><span class="section-number-2">2.</span> 個人電腦控制微控制器實驗</h2>
+<div id="outline-container-orgd00b448" class="outline-2">
+<h2 id="orgd00b448"><span class="section-number-2">2.</span> 個人電腦控制微控制器實驗</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 一般提到自動控制、時序控制等系統有
@@ -233,8 +235,8 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </p></li>
 </ol>
 </div>
-<div id="outline-container-org4a638c2" class="outline-3">
-<h3 id="org4a638c2"><span class="section-number-3">2.1.</span> uLisp 介紹</h3>
+<div id="outline-container-org10154cc" class="outline-3">
+<h3 id="org10154cc"><span class="section-number-3">2.1.</span> uLisp 介紹</h3>
 <div class="outline-text-3" id="text-2-1">
 <p>
 用於微控制器的 Lisp
@@ -246,31 +248,31 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </p>
 </div>
 </div>
-<div id="outline-container-org5c57de5" class="outline-3">
-<h3 id="org5c57de5"><span class="section-number-3">2.2.</span> 用 common lisp 控制 ulisp/ control ulisp with common lisp</h3>
+<div id="outline-container-org33cd9e7" class="outline-3">
+<h3 id="org33cd9e7"><span class="section-number-3">2.2.</span> 用 common lisp 控制 ulisp/ control ulisp with common lisp</h3>
 <div class="outline-text-3" id="text-2-2">
 <p>
 使用 common lisp (SBCL) 經由序列埠控制安裝 ulisp 的 Arduino UNO 。
 </p>
 </div>
-<div id="outline-container-org6908952" class="outline-4">
-<h4 id="org6908952"><span class="section-number-4">2.2.1.</span> <span class="done DONE">DONE</span> 使用 SBCL 與 Arduino UNO 連線。</h4>
+<div id="outline-container-org76c3bfb" class="outline-4">
+<h4 id="org76c3bfb"><span class="section-number-4">2.2.1.</span> <span class="done DONE">DONE</span> 使用 SBCL 與 Arduino UNO 連線。</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 由於 Arduino UNO 的儲存空間不足，在安裝 uLisp 後，其 (load-image) 及 (same-image) 不足以保存太多的程式在晶片上。如果將程式由電腦傳上微控制器，則可以利用電腦的儲存空間及計算能力以增加應用的能力。
 </p>
 </div>
 </div>
-<div id="outline-container-org74fb1da" class="outline-4">
-<h4 id="org74fb1da"><span class="section-number-4">2.2.2.</span> <span class="done DONE">DONE</span> 利用 Emacs Slime mode 編寫 ulisp 程式，並上傳到 Arduino UNO。</h4>
+<div id="outline-container-org5bb72e6" class="outline-4">
+<h4 id="org5bb72e6"><span class="section-number-4">2.2.2.</span> <span class="done DONE">DONE</span> 利用 Emacs Slime mode 編寫 ulisp 程式，並上傳到 Arduino UNO。</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 經由 SBCL 的 REPL 連線可以搭配 Emacs 的 Slime 模組作為 uLisp 的 IDE。
 </p>
 </div>
 </div>
-<div id="outline-container-org45bc558" class="outline-4">
-<h4 id="org45bc558"><span class="section-number-4">2.2.3.</span> <span class="done DONE">DONE</span> 編寫 LED 矩陣應用，使用 MAX2719 晶片。</h4>
+<div id="outline-container-orgcafa855" class="outline-4">
+<h4 id="orgcafa855"><span class="section-number-4">2.2.3.</span> <span class="done DONE">DONE</span> 編寫 LED 矩陣應用，使用 MAX2719 晶片。</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 以 MAX2719 控制 8x8 LED 陣列。
@@ -280,8 +282,8 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </ul>
 </div>
 </div>
-<div id="outline-container-orgac7eb2f" class="outline-4">
-<h4 id="orgac7eb2f"><span class="section-number-4">2.2.4.</span> <span class="done DONE">DONE</span> 開發人機介面，以利控制 Arduino UNO</h4>
+<div id="outline-container-orgd7c7415" class="outline-4">
+<h4 id="orgd7c7415"><span class="section-number-4">2.2.4.</span> <span class="done DONE">DONE</span> 開發人機介面，以利控制 Arduino UNO</h4>
 <div class="outline-text-4" id="text-2-2-4">
 <p>
 以網站作為人機介面，以控制設備。
@@ -293,8 +295,8 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </div>
 </div>
 </div>
-<div id="outline-container-org089bc12" class="outline-3">
-<h3 id="org089bc12"><span class="section-number-3">2.3.</span> uLisp 點亮 TM1637 四位元七段顯示器</h3>
+<div id="outline-container-org209b680" class="outline-3">
+<h3 id="org209b680"><span class="section-number-3">2.3.</span> uLisp 點亮 TM1637 四位元七段顯示器</h3>
 <div class="outline-text-3" id="text-2-3">
 <ul class="org-ul">
 <li><a href="use-tm1637-led-mode.html">以 Arduino 搭配 uLisp 建立驅動 4-bit LED display</a></li>
@@ -302,17 +304,23 @@ SimulIDE 是一個簡單的實時電子電路模擬器，供愛好者或學生�
 </div>
 </div>
 </div>
-<div id="outline-container-org0d82101" class="outline-2">
-<h2 id="org0d82101"><span class="section-number-2">3.</span> 各申機械設計工作室</h2>
+<div id="outline-container-orge1ed796" class="outline-2">
+<h2 id="orge1ed796"><span class="section-number-2">3.</span> 各申機械設計工作室</h2>
 <div class="outline-text-2" id="text-3">
-<ul class="org-ul">
-<li><a href="https://sites.google.com/view/each-application/homepage">各申機械設計工作室</a>
-<ul class="org-ul">
-<li><a href="https://sites.google.com/view/each-application/contact-us">聯絡方式</a></li>
-</ul></li>
-<li><a href="https://sites.google.com/view/each-application/pressure-vessel-design/%E5%A3%93%E5%8A%9B%E5%AE%B9%E5%99%A8%E8%A8%AD%E8%A8%88%E8%AB%AE%E8%A9%A2">壓力容器設計諮詢</a></li>
-<li><a href="https://ya-bao.blogspot.com/">壓寶計劃</a></li>
-</ul>
+</div>
+<div id="outline-container-org556aff1" class="outline-3">
+<h3 id="org556aff1"><span class="section-number-3">3.1.</span> <a href="https://sites.google.com/view/each-application/homepage">各申機械設計工作室</a></h3>
+<div class="outline-text-3" id="text-3-1">
+</div>
+<div id="outline-container-orgea44da1" class="outline-4">
+<h4 id="orgea44da1"><span class="section-number-4">3.1.1.</span> <a href="https://sites.google.com/view/each-application/contact-us">聯絡方式</a></h4>
+</div>
+<div id="outline-container-orgdbc06e3" class="outline-4">
+<h4 id="orgdbc06e3"><span class="section-number-4">3.1.2.</span> <a href="https://sites.google.com/view/each-application/pressure-vessel-design/%E5%A3%93%E5%8A%9B%E5%AE%B9%E5%99%A8%E8%A8%AD%E8%A8%88%E8%AB%AE%E8%A9%A2">壓力容器設計諮詢</a></h4>
+</div>
+</div>
+<div id="outline-container-orgeff6ad5" class="outline-3">
+<h3 id="orgeff6ad5"><span class="section-number-3">3.2.</span> <a href="https://ya-bao.blogspot.com/">壓寶計劃</a></h3>
 </div>
 </div>
 </div>

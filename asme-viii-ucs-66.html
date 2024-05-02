@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2022-01-22 六 22:05 -->
+<!-- 2024-03-20 三 11:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>低合金鋼及碳鋼低溫作業/ 判定 MDMT</title>
@@ -191,7 +191,7 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
 <meta name='description'  content='低合金鋼及碳鋼低溫作業及判定 MDMT，包括材質的衝試驗豁免曲線和流程圖。'/>
@@ -204,27 +204,38 @@ ol.b > li::marker {content:"(" counter(list-item, decimal) ")";}
 table.aaa {border:0;colspan:0;vertical-align:top}
 table.aaa, td {vertical-align:top}
 </style>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -233,52 +244,52 @@ table.aaa, td {vertical-align:top}
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgd0ebe80">1. 衝擊試驗豁免曲線</a>
+<li><a href="#org9d2bbec">1. 衝擊試驗豁免曲線</a>
 <ul>
-<li><a href="#org476ab67">1.1. 美國慣用單位</a></li>
-<li><a href="#org3e52e7b">1.2. SI 單位</a></li>
-<li><a href="#org8abf511">1.3. GENERAL NOTES</a></li>
-<li><a href="#org2340a97">1.4. NOTES:</a></li>
+<li><a href="#orgcd49221">1.1. 美國慣用單位</a></li>
+<li><a href="#org501aacd">1.2. SI 單位</a></li>
+<li><a href="#org206c12e">1.3. GENERAL NOTES</a></li>
+<li><a href="#org64e5f31">1.4. NOTES:</a></li>
 </ul>
 </li>
-<li><a href="#orgcad6c2b">2. 在沒有衝擊測試的情況下降低最低設計金屬溫度</a>
+<li><a href="#orgb751e54">2. 在沒有衝擊測試的情況下降低最低設計金屬溫度</a>
 <ul>
-<li><a href="#orgba45c20">2.1. 美國慣用單位</a></li>
-<li><a href="#org729c7ec">2.2. SI 單位</a></li>
+<li><a href="#orgd674e1b">2.1. 美國慣用單位</a></li>
+<li><a href="#orgd14fe3c">2.2. SI 單位</a></li>
 </ul>
 </li>
-<li><a href="#org6399718">3. UCS-66 無衝擊試驗確定最低設計金屬溫度 (MDMT) 規則圖</a></li>
-<li><a href="#org4a5c04c">4. 參考文獻</a></li>
+<li><a href="#orgbbfaeed">3. UCS-66 無衝擊試驗確定最低設計金屬溫度 (MDMT) 規則圖</a></li>
+<li><a href="#orga177c77">4. 參考文獻</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd0ebe80" class="outline-2">
-<h2 id="orgd0ebe80"><span class="section-number-2">1.</span> 衝擊試驗豁免曲線</h2>
+<div id="outline-container-org9d2bbec" class="outline-2">
+<h2 id="org9d2bbec"><span class="section-number-2">1.</span> 衝擊試驗豁免曲線</h2>
 <div class="outline-text-2" id="text-1">
 </div>
-<div id="outline-container-org476ab67" class="outline-3">
-<h3 id="org476ab67"><span class="section-number-3">1.1.</span> 美國慣用單位</h3>
+<div id="outline-container-orgcd49221" class="outline-3">
+<h3 id="orgcd49221"><span class="section-number-3">1.1.</span> 美國慣用單位</h3>
 <div class="outline-text-3" id="text-1-1">
 
-<div id="orgbb7aab2" class="figure">
+<div id="org4fa343a" class="figure">
 <p><img src="pic/ucs-66/figure-UCS-66.png" alt="衝擊試驗豁免曲線/ 美國慣用單位" width="800" /><br />
 </p>
 </div>
 </div>
 </div>
 
-<div id="outline-container-org3e52e7b" class="outline-3">
-<h3 id="org3e52e7b"><span class="section-number-3">1.2.</span> SI 單位</h3>
+<div id="outline-container-org501aacd" class="outline-3">
+<h3 id="org501aacd"><span class="section-number-3">1.2.</span> SI 單位</h3>
 <div class="outline-text-3" id="text-1-2">
 
-<div id="org4e7ab1e" class="figure">
+<div id="org7432eb9" class="figure">
 <p><img src="pic/ucs-66/figure-UCS-66M.png" alt="衝擊試驗豁免曲線/ SI 單位" width="800" /><br />
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org8abf511" class="outline-3">
-<h3 id="org8abf511"><span class="section-number-3">1.3.</span> GENERAL NOTES</h3>
+<div id="outline-container-org206c12e" class="outline-3">
+<h3 id="org206c12e"><span class="section-number-3">1.3.</span> GENERAL NOTES</h3>
 <div class="outline-text-3" id="text-1-3">
 <ol class="org-ol b">
 <li>Tabular values for this figure are provided in Table UCS-66.<br /></li>
@@ -287,7 +298,7 @@ table.aaa, td {vertical-align:top}
 For bolting and nuts, the following impact test exemption temperatures shall apply:<br />
 </p>
 
-<div id="org9db65a1" class="figure">
+<div id="orgaa78f85" class="figure">
 <p><img src="./pic/ucs-66/Figure-UCS-66-1-GN-c.png" alt="&quot;Figure UCS-66 GENERAL NOTES:(c) For bolting and nuts, the following impact test exemption temperatures shall apply&quot;" width="800" /><br />
 </p>
 </div></li>
@@ -304,8 +315,8 @@ For bolting and nuts, the following impact test exemption temperatures shall app
 </div>
 
 
-<div id="outline-container-org2340a97" class="outline-3">
-<h3 id="org2340a97"><span class="section-number-3">1.4.</span> NOTES:</h3>
+<div id="outline-container-org64e5f31" class="outline-3">
+<h3 id="org64e5f31"><span class="section-number-3">1.4.</span> NOTES:</h3>
 <div class="outline-text-3" id="text-1-4">
 <ol class="org-ol b">
 <li>Curve A applies to the following:<br />
@@ -368,15 +379,15 @@ SA/GB 713 Grade Q345R if normalized<br /></li>
 </div>
 </div>
 </div>
-<div id="outline-container-orgcad6c2b" class="outline-2">
-<h2 id="orgcad6c2b"><span class="section-number-2">2.</span> 在沒有衝擊測試的情況下降低最低設計金屬溫度</h2>
+<div id="outline-container-orgb751e54" class="outline-2">
+<h2 id="orgb751e54"><span class="section-number-2">2.</span> 在沒有衝擊測試的情況下降低最低設計金屬溫度</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-orgba45c20" class="outline-3">
-<h3 id="orgba45c20"><span class="section-number-3">2.1.</span> 美國慣用單位</h3>
+<div id="outline-container-orgd674e1b" class="outline-3">
+<h3 id="orgd674e1b"><span class="section-number-3">2.1.</span> 美國慣用單位</h3>
 <div class="outline-text-3" id="text-2-1">
 
-<div id="org1107500" class="figure">
+<div id="org57c9f17" class="figure">
 <p><img src="pic/ucs-66/fig-table-ucs-66-1.png" alt="在沒有衝擊測試的情況下降低最低設計金屬溫度/ 美國慣用單位" width="800" /><br />
 </p>
 </div>
@@ -430,11 +441,11 @@ NOTES:<br />
 </div>
 </div>
 
-<div id="outline-container-org729c7ec" class="outline-3">
-<h3 id="org729c7ec"><span class="section-number-3">2.2.</span> SI 單位</h3>
+<div id="outline-container-orgd14fe3c" class="outline-3">
+<h3 id="orgd14fe3c"><span class="section-number-3">2.2.</span> SI 單位</h3>
 <div class="outline-text-3" id="text-2-2">
 
-<div id="org95b84cc" class="figure">
+<div id="orge3530af" class="figure">
 <p><img src="pic/ucs-66/fig-table-ucs-66-1M.png" alt="在沒有衝擊測試的情況下降低最低設計金屬溫度/ SI 單位" width="800" /><br />
 </p>
 </div>
@@ -489,11 +500,11 @@ NOTES:<br />
 </div>
 </div>
 
-<div id="outline-container-org6399718" class="outline-2">
-<h2 id="org6399718"><span class="section-number-2">3.</span> UCS-66 無衝擊試驗確定最低設計金屬溫度 (MDMT) 規則圖</h2>
+<div id="outline-container-orgbbfaeed" class="outline-2">
+<h2 id="orgbbfaeed"><span class="section-number-2">3.</span> UCS-66 無衝擊試驗確定最低設計金屬溫度 (MDMT) 規則圖</h2>
 <div class="outline-text-2" id="text-3">
 
-<div id="org38416f2" class="figure">
+<div id="org4572ad9" class="figure">
 <p><img src="pic/ucs-66/fig-ucs-66-2.png" alt="UCS-66 無衝擊試驗確定最低設計金屬溫度 (MDMT) 規則圖" width="800" /><br />
 </p>
 </div>
@@ -516,8 +527,8 @@ NOTES:<br />
 </ol>
 </div>
 </div>
-<div id="outline-container-org4a5c04c" class="outline-2">
-<h2 id="org4a5c04c"><span class="section-number-2">4.</span> 參考文獻</h2>
+<div id="outline-container-orga177c77" class="outline-2">
+<h2 id="orga177c77"><span class="section-number-2">4.</span> 參考文獻</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 名詞介紹：<br />
@@ -535,12 +546,9 @@ References:<br />
 </div>
 </div>
 <div id="postamble" class="status">
-<p class="postamble"> 
-		 <a href="https://sites.google.com/view/each-application/homepage"> 
-		   各申機械設計工作室 </a> &nbsp;&nbsp;
-		 <a href="ya-bao-doc-database.html"> 
-		   壓寶計劃文件參考資料 </a>
-		</p>
+<p class="author">Author: 各申機械設計工作室</p>
+<p class="date">Created: 2024-03-20 三 11:24</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
 </html>

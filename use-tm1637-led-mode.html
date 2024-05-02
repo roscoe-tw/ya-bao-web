@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2022-04-14 四 15:28 -->
+<!-- 2024-03-20 三 11:24 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>uLisp 點亮 TM1637 四位元七段顯示器</title>
@@ -191,31 +191,42 @@
     { font-size: 10px; font-weight: bold; white-space: nowrap; }
   .org-info-js_search-highlight
     { background-color: #ffff00; color: #000000; font-weight: bold; }
-  .org-svg { width: 90%; }
+  .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
 <meta name='description'  content='各申機械設計工作室，研究使用 lisp 驅動 4-bit desplay 。'/>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        displayAlign: "center",
-        displayIndent: "0em",
-
-        "HTML-CSS": { scale: 100,
-                        linebreaks: { automatic: "false" },
-                        webFont: "TeX"
-                       },
-        SVG: {scale: 100,
-              linebreaks: { automatic: "false" },
-              font: "TeX"},
-        NativeMML: {scale: 100},
-        TeX: { equationNumbers: {autoNumber: "AMS"},
-               MultLineWidth: "85%",
-               TagSide: "right",
-               TagIndent: ".8em"
-             }
-});
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
 </script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-AMS_HTML"></script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
@@ -224,16 +235,16 @@
 點亮一個四位數的七段顯示器很複雜也很簡單，簡單的是直接用 Arduino
 的範例去做就好，複雜的是自己想要自己生一個 lisp 驅動的程式&#x2026;
 </p>
-<div id="outline-container-org55cd430" class="outline-2">
-<h2 id="org55cd430"><span class="section-number-2">1.</span> 目標</h2>
+<div id="outline-container-orgd688679" class="outline-2">
+<h2 id="orgd688679"><span class="section-number-2">1.</span> 目標</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 建立 Arduino UNO 使用 uLisp 驅動的四位數七段顯示器的 API 。
 </p>
 </div>
 </div>
-<div id="outline-container-org2d0b89e" class="outline-2">
-<h2 id="org2d0b89e"><span class="section-number-2">2.</span> TM1637 IC 介紹</h2>
+<div id="outline-container-orgc1f6b2c" class="outline-2">
+<h2 id="orgc1f6b2c"><span class="section-number-2">2.</span> TM1637 IC 介紹</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 TM1637 是一種帶鍵盤掃描接口的 LED（發光二極管顯示器）驅動控制專用電路，內部集成了 MCU 數字接口、數據鎖存、LED 高壓驅動和鍵盤掃描。
@@ -242,23 +253,23 @@ TM1637 是一種帶鍵盤掃描接口的 LED（發光二極管顯示器）驅動
 </p>
 </div>
 </div>
-<div id="outline-container-org266b818" class="outline-2">
-<h2 id="org266b818"><span class="section-number-2">3.</span> 使用介面</h2>
+<div id="outline-container-org392f8ca" class="outline-2">
+<h2 id="org392f8ca"><span class="section-number-2">3.</span> 使用介面</h2>
 <div class="outline-text-2" id="text-3">
 <p>
 自製 common lisp 與 Arduino UNO 開發板連接的程式， cl-connect-arduino 。
 </p>
 </div>
 </div>
-<div id="outline-container-org7de1e3c" class="outline-2">
-<h2 id="org7de1e3c"><span class="section-number-2">4.</span> <span class="todo TODO">TODO</span> API 製作</h2>
+<div id="outline-container-orga5e1615" class="outline-2">
+<h2 id="orga5e1615"><span class="section-number-2">4.</span> <span class="todo TODO">TODO</span> API 製作</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-org0f44a03" class="outline-3">
-<h3 id="org0f44a03"><span class="section-number-3">4.1.</span> <span class="done DONE">DONE</span> cl-connect-arduino 與 Arduino UNO 連接</h3>
+<div id="outline-container-org50aae53" class="outline-3">
+<h3 id="org50aae53"><span class="section-number-3">4.1.</span> <span class="done DONE">DONE</span> cl-connect-arduino 與 Arduino UNO 連接</h3>
 </div>
-<div id="outline-container-orgd2c4f6e" class="outline-3">
-<h3 id="orgd2c4f6e"><span class="section-number-3">4.2.</span> <span class="done DONE">DONE</span> 確認電子模組與 Arduino UNO 連接方式</h3>
+<div id="outline-container-org97fefb0" class="outline-3">
+<h3 id="org97fefb0"><span class="section-number-3">4.2.</span> <span class="done DONE">DONE</span> 確認電子模組與 Arduino UNO 連接方式</h3>
 <div class="outline-text-3" id="text-4-2">
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 
@@ -302,12 +313,12 @@ TM1637 是一種帶鍵盤掃描接口的 LED（發光二極管顯示器）驅動
 </div>
 </div>
 </div>
-<div id="outline-container-org4b5c1f5" class="outline-2">
-<h2 id="org4b5c1f5"><span class="section-number-2">5.</span> common lisp</h2>
+<div id="outline-container-orga416a77" class="outline-2">
+<h2 id="orga416a77"><span class="section-number-2">5.</span> common lisp</h2>
 <div class="outline-text-2" id="text-5">
 </div>
-<div id="outline-container-orgb84a8d6" class="outline-3">
-<h3 id="orgb84a8d6"><span class="section-number-3">5.1.</span> ulisp-led-4-bit-display.asd</h3>
+<div id="outline-container-org49a2af8" class="outline-3">
+<h3 id="org49a2af8"><span class="section-number-3">5.1.</span> ulisp-led-4-bit-display.asd</h3>
 <div class="outline-text-3" id="text-5-1">
 <div class="org-src-container">
 <pre class="src src-lisp">  <span style="color: #fa8072;">;;;;</span><span style="color: #ff7f24; font-style: italic;">-*- Mode: LISP; Syntax: ANSI-Common-Lisp; Base: 10 -*-</span>
@@ -326,8 +337,8 @@ TM1637 是一種帶鍵盤掃描接口的 LED（發光二極管顯示器）驅動
 </div>
 </div>
 </div>
-<div id="outline-container-orgfeaa6b4" class="outline-3">
-<h3 id="orgfeaa6b4"><span class="section-number-3">5.2.</span> packages.lisp</h3>
+<div id="outline-container-orgc0d1c14" class="outline-3">
+<h3 id="orgc0d1c14"><span class="section-number-3">5.2.</span> packages.lisp</h3>
 <div class="outline-text-3" id="text-5-2">
 <div class="org-src-container">
 <pre class="src src-lisp">(<span style="color: #00ffff;">in-package</span> <span style="color: #b0c4de;">:cl-user</span>)
@@ -338,8 +349,8 @@ TM1637 是一種帶鍵盤掃描接口的 LED（發光二極管顯示器）驅動
 </div>
 </div>
 </div>
-<div id="outline-container-org0fb30f5" class="outline-3">
-<h3 id="org0fb30f5"><span class="section-number-3">5.3.</span> ulisp-led-4-bit-display.lisp</h3>
+<div id="outline-container-org241db8d" class="outline-3">
+<h3 id="org241db8d"><span class="section-number-3">5.3.</span> ulisp-led-4-bit-display.lisp</h3>
 <div class="outline-text-3" id="text-5-3">
 <div class="org-src-container">
 <pre class="src src-lisp">(<span style="color: #00ffff;">in-package</span> <span style="color: #b0c4de;">:ulisp-led-4-bit-display</span>)
@@ -457,8 +468,8 @@ TM1637 是一種帶鍵盤掃描接口的 LED（發光二極管顯示器）驅動
 </div>
 </div>
 </div>
-<div id="outline-container-orgb7f5682" class="outline-3">
-<h3 id="orgb7f5682"><span class="section-number-3">5.4.</span> 程式重點</h3>
+<div id="outline-container-org5da818c" class="outline-3">
+<h3 id="org5da818c"><span class="section-number-3">5.4.</span> 程式重點</h3>
 <div class="outline-text-3" id="text-5-4">
 <ul class="org-ul">
 <li>要注意 I2C format 位元讀取時間是在 scl 高位元才會讀取，sda 在 scl 低位元時變換才有效。</li>
@@ -468,8 +479,8 @@ TM1637 是一種帶鍵盤掃描接口的 LED（發光二極管顯示器）驅動
 </div>
 </div>
 </div>
-<div id="outline-container-org74bdc60" class="outline-2">
-<h2 id="org74bdc60"><span class="section-number-2">6.</span> 參考</h2>
+<div id="outline-container-orgc4d47db" class="outline-2">
+<h2 id="orgc4d47db"><span class="section-number-2">6.</span> 參考</h2>
 <div class="outline-text-2" id="text-6">
 <ul class="org-ul">
 <li><a href="https://www.strongpilab.com/i2c-introduction">I2C-協定用法原理簡介-晶片溝通的橋樑</a></li>
