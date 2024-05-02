@@ -8,6 +8,12 @@
  </url>
  <url>
   <loc>
+   https://roscoe-tw.github.io/ya-bao-web/sitemap.xml</loc>
+  <priority>
+   0.5</priority>
+ </url>
+ <url>
+  <loc>
    https://roscoe-tw.github.io/ya-bao-web/blog.html</loc>
   <priority>
    0.5</priority>
@@ -32,37 +38,19 @@
  </url>
  <url>
   <loc>
-   https://roscoe-tw.github.io/ya-bao-web/flange-type.html</loc>
-  <priority>
-   0.5</priority>
- </url>
- <url>
-  <loc>
-   https://roscoe-tw.github.io/ya-bao-web/sequence-for-tightening-of-flange-bolts.html</loc>
-  <priority>
-   0.5</priority>
- </url>
- <url>
-  <loc>
-   https://roscoe-tw.github.io/ya-bao-web/ya-bao-working-environment.html</loc>
-  <priority>
-   0.5</priority>
- </url>
- <url>
-  <loc>
-   https://roscoe-tw.github.io/ya-bao-web/cs-to-strlen.html</loc>
-  <priority>
-   0.5</priority>
- </url>
- <url>
-  <loc>
-   https://roscoe-tw.github.io/ya-bao-web/sitemap.xml</loc>
+   https://roscoe-tw.github.io/ya-bao-web/use-tm1637-led-mode.html</loc>
   <priority>
    0.5</priority>
  </url>
  <url>
   <loc>
    https://roscoe-tw.github.io/ya-bao-web/ya-bao-web-sitemap</loc>
+  <priority>
+   0.5</priority>
+ </url>
+ <url>
+  <loc>
+   https://roscoe-tw.github.io/ya-bao-web/documents/public/連接各項資料.html</loc>
   <priority>
    0.5</priority>
  </url>

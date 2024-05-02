@@ -31,24 +31,29 @@ ya-bao-web 的 github pages 控制文件
 
     (ql:quickload "cxml")
 
-    (defun generate-sitemap (urls &optional (filename "./sitemap.xml"))
+    (defun generate-sitemap (urls &optional (filename "sitemap.xml"))
       "Creates the sitemap file"
-      (with-open-file (file filename
-			    :direction :output
-			    :element-type :default
-			    :if-exists  :supersede)
-	(cxml:with-xml-output (cxml:make-octet-stream-sink file :indentation 1 :canonical nil)
-	  (cxml:with-element "urlset"
-	    (cxml:attribute "xmlns" "http://www.sitemaps.org/schemas/sitemap/0.9")
-	    ;; create the tags
-	    (dolist (item urls)
-	      (cxml:with-element "url"
-		(cxml:with-element "loc"
-		  (cxml:text item))
-		;; (cxml:with-element "changefreq"
-		;;   (cxml:text "daily"))
-		(cxml:with-element "priority"
-			  (cxml:text "0.5"))))))))
+      (let* ((name1 (pathname-name filename))
+	     (type1 (pathname-type filename))
+	     (fn1 (uiop:make-pathname*
+		   :directory '(:absolute "home" "screw" "Documents" "ya-bao-web")
+		   :name name1 :type type1)))
+	(with-open-file (file fn1
+			      :direction :output
+			      :element-type :default
+			      :if-exists  :supersede)
+	  (cxml:with-xml-output (cxml:make-octet-stream-sink file :indentation 1 :canonical nil)
+	    (cxml:with-element "urlset"
+	      (cxml:attribute "xmlns" "http://www.sitemaps.org/schemas/sitemap/0.9")
+	      ;; create the tags
+	      (dolist (item urls)
+		(cxml:with-element "url"
+		  (cxml:with-element "loc"
+		    (cxml:text item))
+		  ;; (cxml:with-element "changefreq"
+		  ;;   (cxml:text "daily"))
+		  (cxml:with-element "priority"
+		    (cxml:text "0.5")))))))))
 
     (defun create-sitemap (file &rest urls)
       (generate-sitemap urls file))
@@ -67,8 +72,8 @@ ya-bao-web 的 github pages 控制文件
 			 (web-url "sitemap.xml")
 			 (web-url "ya-bao-web-sitemap"))))
 	(progn
-	  (apply #'create-sitemap `("./ya-bao-web-sitemap" ,@list1))
-	  (apply #'create-sitemap `("./sitemap.xml" ,@list1)))))
+	  (apply #'create-sitemap `("ya-bao-web-sitemap" ,@list1))
+	  (apply #'create-sitemap `("sitemap.xml" ,@list1)))))
 
     (to-create-sitemap)
   #+end_src
