@@ -54,4 +54,10 @@
   <priority>
    0.5</priority>
  </url>
+ <url>
+  <loc>
+   https://roscoe-tw.github.io/ya-bao-web/ASME-Sec-II-P-D-table-1A-relationship-diagram.html</loc>
+  <priority>
+   0.5</priority>
+ </url>
 </urlset>
