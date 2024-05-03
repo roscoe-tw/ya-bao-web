@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2024-03-20 三 11:24 -->
+<!-- 2024-05-03 五 15:47 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>壓寶計劃的作業環境</title>
@@ -205,12 +205,12 @@
 <h2 id="orgc537580"><span class="section-number-2">1.</span> 電腦軟體的環境</h2>
 <div class="outline-text-2" id="text-1">
 <ul class="org-ul">
-<li>作業系統: Debian GNU/Linux, Windows OS.</li>
-<li>計算軟體: PV Elite, Maxima.</li>
+<li>作業系統: <a href="https://www.debian.org/">Debian GNU/Linux</a>, Windows OS.</li>
+<li>計算軟體: PV Elite, <a href="https://maxima.sourceforge.io/">Maxima</a>.</li>
 <li>編輯軟體: Emacs.</li>
-<li>文件處理軟體: LibreOffice, GIMP, Inkscape, AutoCAD, FreeCad, Blender.</li>
+<li>文件處理軟體: <a href="https://zh-tw.libreoffice.org/">LibreOffice</a>, <a href="https://www.gimp.org/">GIMP</a>, <a href="https://inkscape.org/">Inkscape</a>, AutoCAD, FreeCad, Blender.</li>
 <li>排版軟體: Scribus, LaTex.</li>
-<li>程式語言: common lisp (sbcl)</li>
+<li>程式語言: common lisp (<a href="https://www.sbcl.org/">sbcl</a>)</li>
 </ul>
 </div>
 </div>
@@ -218,8 +218,9 @@
 <h2 id="orga319d91"><span class="section-number-2">2.</span> 設計法規</h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>ASME CODE</li>
+<li>ASME Sec.VIII Div.1</li>
 <li>CNS 9788</li>
+<li>JIS B 8265</li>
 </ul>
 </div>
 </div>
@@ -229,6 +230,7 @@
 <ul class="org-ul">
 <li>設計一套獨立的壓力容器設備強度計算系統。</li>
 <li>依強度設計參數設計自動繪圖。</li>
+<li><a href="https://ya-bao.blogspot.com/">壓寶計劃 : 壓力容器保障計劃</a></li>
 </ul>
 </div>
 <div id="outline-container-org2ff424c" class="outline-3">
@@ -239,9 +241,18 @@
 <h4 id="orgcc6c869"><span class="section-number-4">3.1.1.</span> maxima</h4>
 <div class="outline-text-4" id="text-3-1-1">
 <ul class="org-ul">
-<li>端板容積計算</li>
-<li>端板厚度計算</li>
-<li>殼板厚度計算</li>
+<li>端板容積計算
+<ul class="org-ul">
+<li><a href="https://sites.google.com/view/each-application/software-design/calculate-internal-volume-of-spherically-dished">碟形端板容積計算</a></li>
+</ul></li>
+<li>端板厚度計算
+<ul class="org-ul">
+<li><a href="https://sites.google.com/view/each-application/software-design/maxima/%E7%A2%9F%E5%BD%A2%E7%AB%AF%E6%9D%BF%E5%8E%9A%E5%BA%A6%E8%A8%88%E7%AE%97-jis">碟形端板厚度計算-JIS</a></li>
+</ul></li>
+<li>殼板厚度計算
+<ul class="org-ul">
+<li><a href="maxima/asme-ug-27.mac">ASME UG-27</a></li>
+</ul></li>
 </ul>
 </div>
 </div>
