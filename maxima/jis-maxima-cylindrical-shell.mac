@@ -1,11 +1,11 @@
-/*Copyright (C) 2024 Each Application Mechanical Design Studio
 /*
-/*
-/*Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
-/*
-/*The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-/*
-/*THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
+Copyright (C) 2024 Each Application Mechanical Design Studio
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.*/
 
 kill(all);
 
@@ -27,36 +27,32 @@ thickness_cylindrical_shell(P,Di,S,E):= block([],
 
 t[cs]:thickness_cylindrical_shell(P,D[i],S[a],E);
 
-stream:openw("calculation-jis-cylindrical-shell.tex");
+printf(true,"~&Material name: ~A \\\\",material[name]);
+printf(true,"~&Design Temperature: ~A ~~",material[temp]);
+printf(true,"$ ^\\circ C $");
+printf(true,"\\\\");
 
-printf(stream,"~&Material name: ~A \\\\",material[name]);
-printf(stream,"~&Design Temperature: ~A ~~",material[temp]);
-printf(stream,"$ ^\\circ C $");
-printf(stream,"\\\\");
+printf(true,"~&\\begin{align*}");
 
-printf(stream,"~&\\begin{align*}");
+printf(true,"~&P &= ~A  &MPa \\\\",P);
+printf(true,"~&D_i &= ~A &mm \\\\",D[i]);
+printf(true,"~&\\sigma_a &= ~A &N/mm^2 \\\\",S[a]);
+printf(true,"~&\\eta &= ~A \\\\ ",E);
+printf(true,"~&t_{min}  &= ~A &mm\\\\",t[min]);
+printf(true,"~&t_{c} &= ~A &mm\\\\",t[c]);
+printf(true,"~&t_{n} &= ~A &mm\\\\",t[n]);
 
-printf(stream,"~&P &= ~A  &MPa \\\\",P);
-printf(stream,"~&D_i &= ~A &mm \\\\",D[i]);
-printf(stream,"~&\\sigma_a &= ~A &N/mm^2 \\\\",S[a]);
-printf(stream,"~&\\eta &= ~A \\\\ ",E);
-printf(stream,"~&t_{min}  &= ~A &mm\\\\",t[min]);
-printf(stream,"~&t_{c} &= ~A &mm\\\\",t[c]);
-printf(stream,"~&t_{n} &= ~A &mm\\\\",t[n]);
+printf(true,"~&\\end{align*}");
 
-printf(stream,"~&\\end{align*}");
-
-printf(stream,"~&\\begin{align*}");
-printf(stream,"t &= \\frac{PD_i}{2\\sigma_a \\eta - 1.2 P} \\\\
+printf(true,"~&\\begin{align*}");
+printf(true,"t &= \\frac{PD_i}{2\\sigma_a \\eta - 1.2 P} \\\\
   &= \\frac{~,3f \\times ~,3f}{2 \\times ~,3f \\times ~,3f - 1.2 \\times ~,3f} \\\\
   &= ~,3f ~~mm\\\\",P,D[i],S[a],E,P,t[cs]);
 
-printf(stream,"~&\\end{align*}");
+printf(true,"~&\\end{align*}");
 
-printf(stream,"~& Determination:  \\\\");
+printf(true,"~& Determination:  \\\\");
 
-printf(stream,"$$ t_n \\geq \\max (t,t_{min}) + t_c $$");
+printf(true,"$$ t_n \\geq \\max (t,t_{min}) + t_c $$");
 
-printf(stream,"~& where $$ t_n > \\max(~,3f , ~,3f) + ~,3f = ~,3f  ~~mm$$", t[cs],t[min],t[c] ,max(t[cs],t[min])+t[c]);
-
-close(stream);
+printf(true,"~& where $$ t_n > \\max(~,3f , ~,3f) + ~,3f = ~,3f  ~~mm$$", t[cs],t[min],t[c] ,max(t[cs],t[min])+t[c]);
