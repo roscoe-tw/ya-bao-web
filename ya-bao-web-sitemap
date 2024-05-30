@@ -60,4 +60,10 @@
   <priority>
    0.5</priority>
  </url>
+ <url>
+  <loc>
+   https://roscoe-tw.github.io/ya-bao-web/capacity-conversions-for-safety-valves.html</loc>
+  <priority>
+   0.5</priority>
+ </url>
 </urlset>
