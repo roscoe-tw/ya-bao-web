@@ -6,8 +6,8 @@
 <!-- 2024-05-30 四 21:43 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>壓寶計劃的作業環境</title>
-<meta name="author" content="各申機械設計工作室 各申機械設計工作室" />
+<title>CAPACITY CONVERSIONS FOR SAFETY VALVES @@latex:\\@@ @@html:&lt;br&gt;@@ 安全閥流量轉換</title>
+<meta name="author" content="各申機械設計工作室" />
 <meta name="generator" content="Org Mode" />
 <style type="text/css">
   #content { max-width: 60em; margin: auto; }
@@ -194,93 +194,193 @@
   .org-svg { }
 </style>
 <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
-<meta name='description'  content='壓寶計劃中使用的軟體、工具及程式。'/>
+<meta name='description'  content='各申機械設計工作室作業相關記錄，包括機械設計開發及程式設計。'/>
+<meta name="google-site-verification" content="6qFjj1TtFctlKH--W9gYQJ7MDsIjT6OzJtFhyU-Epz0" />
 <link rel="stylesheet" type="text/css" href="https://gongzhitaao.org/orgcss/org.css"/>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">壓寶計劃的作業環境</h1>
+<h1 class="title">CAPACITY CONVERSIONS FOR SAFETY VALVES  <br> 安全閥流量轉換</h1>
+<div id="outline-container-orgd5fc3ee" class="outline-2">
+<h2 id="orgd5fc3ee"><span class="section-number-2">1.</span> 流量轉換</h2>
+<div class="outline-text-2" id="text-1">
 <p>
-壓寶計劃目前使用的軟體及程式。
+安全閥或洩壓閥的使用氣體或蒸氣的流量而不以正式的介質額定流量來確認，應透過以下公式來確定：
+</p>
+<ul class="org-ul">
+<li><p>
+對於蒸汽
+</p>
+\begin{equation*}
+W_s=C_N KAP
+\end{equation*}
+<p>
+在此
+</p>
+\begin{eqnarray*}
+C_N & = & 51.5 ~~用於美國慣用計算\\
+& = & 5.25 ~~用於 ~SI~ 制計算\\
+\end{eqnarray*}</li>
+<li><p>
+對於空氣
+</p>
+\begin{equation*}
+W_a=CKAP\sqrt{\frac{M}{T}}
+\end{equation*}
+<p>
+在此
+</p>
+\begin{eqnarray*}
+  C =& &356~~用於美國慣用計算\\
+  =& &27.03~~用於 ~SI~ 制計算\\
+  M =& &28.97~ mol/wt\\
+  T =& &520~~當 W_a~~ 為額定流量時（用於美國慣用計算）\\
+  =& &293~~當 W_a~~ 為額定流量時（用於 ~SI~ 制計算）\\
+\end{eqnarray*}</li>
+<li><p>
+對於任何氣體或蒸氣
+</p>
+\begin{equation*}
+  W=CKAP\sqrt{\frac{M}{T}}
+\end{equation*}
+<p>
+在此
+</p>
+\begin{eqnarray*}
+  A =& &安全閥的實際排放面積 ~ in^2（mm^2）\\
+  C =& &氣體或蒸氣的常數，它是熱容比~ k=c_p/c_v （見~Figure 11-1~或~Figure 11-1M）\\
+  K =& &流量係數\\
+  M =& &分子量\\
+  P =& &（設定壓力~\times~1.10）加上大氣壓力， psia（MPa_{abs}）\\
+  T =& &入口絕對溫度〔（℉＋460）（K）〕\\
+  W =& &任何氣體或蒸氣的流量，lb/hr （kg/h）\\
+  W_a =& &額定流量，轉換為空氣於入口溫度~60℉（20℃），lb/hr（kg/h）\\
+  W_s =& &額定流量，轉換為蒸汽，lb/hr（kg/h）\\
+\end{eqnarray*}</li>
+</ul>
+
+<p>
+當需要時也可以使用這些公式任何氣體或蒸汽的流量都是已知的，因此有必要計
+算蒸汽或空氣的額定流量。一些常見氣體的分子量蒸氣列於 Table 11-1 。對於碳氫化
+合物蒸氣，k 的實際值為未知，保守值 k = 1.001常用，公式變為
 </p>
 
-<ul class="org-ul">
-<li><a href="index.html">各申機械設計工作室/資料整合</a></li>
-</ul>
-<div id="outline-container-orgc537580" class="outline-2">
-<h2 id="orgc537580"><span class="section-number-2">1.</span> 電腦軟體的環境</h2>
-<div class="outline-text-2" id="text-1">
-<ul class="org-ul">
-<li>作業系統: <a href="https://www.debian.org/">Debian GNU/Linux</a>, Windows OS.</li>
-<li>計算軟體: PV Elite, <a href="https://maxima.sourceforge.io/">Maxima</a>.</li>
-<li>編輯軟體: Emacs.</li>
-<li>文件處理軟體: <a href="https://zh-tw.libreoffice.org/">LibreOffice</a>, <a href="https://www.gimp.org/">GIMP</a>, <a href="https://inkscape.org/">Inkscape</a>, AutoCAD, FreeCad, Blender.</li>
-<li>排版軟體: Scribus, LaTex.</li>
-<li>程式語言: common lisp (<a href="https://www.sbcl.org/">sbcl</a>)</li>
-</ul>
+\begin{equation*}
+  W=CKAP\sqrt{\frac{M}{T}}
+\end{equation*}
+<p>
+在此
+</p>
+\begin{eqnarray*}
+  C =& &315 &用於美國慣用計算\\
+  =& & 23.95 & 用於 ~SI~制計算\\
+\end{eqnarray*}
+
+<p>
+當需要時，如在輕烴的情況下，壓縮係數 Z 可以包含在公式中對於氣體和蒸氣
+</p>
+\begin{equation*}
+  W= CKAP\sqrt{\frac{M}{ZT}}
+\end{equation*}
+
+
+<div id="org92741a5" class="figure">
+<p><img src="./images/asme-secviii-div1-figure-11-1.png" alt="asme-secviii-div1-figure-11-1.png" />
+</p>
+</div>
+
+
+<div id="orgd00c14c" class="figure">
+<p><img src="./images/asme-secviii-div1-figure-11-1M.png" alt="asme-secviii-div1-figure-11-1M.png" />
+</p>
+</div>
+
+
+<div id="org32901d6" class="figure">
+<p><img src="./images/asme-secviii-div1-table-11-1.png" alt="asme-secviii-div1-table-11-1.png" />
+</p>
 </div>
 </div>
-<div id="outline-container-orga319d91" class="outline-2">
-<h2 id="orga319d91"><span class="section-number-2">2.</span> 設計法規</h2>
+</div>
+<div id="outline-container-org617462b" class="outline-2">
+<h2 id="org617462b"><span class="section-number-2">2.</span> </h2>
 <div class="outline-text-2" id="text-2">
 <ul class="org-ul">
-<li>ASME Sec.VIII Div.1</li>
-<li>CNS 9788</li>
-<li>JIS B 8265</li>
+<li>(a) 由於飽和水容量是配置敏感的，以下內容僅適用於那些具有噴嘴式結構的安全閥（喉部與入口直徑比為 0.25 至 0.80，輪廓連續變化，且係數 K D 超過0.90）。無飽和水等級應適用於其他類型的建築。
+<ul class="org-ul">
+<li>註：製造商、使用者和檢驗員均應注意：對於下列額定值的應用，閥門應持續承受飽和水的作用。如果在初始洩壓後流介質當蒸汽品質改變時，閥門應依照乾飽和蒸汽進行額定值。安裝在含有汽水混合物的容器或管線上的閥門應按乾飽和蒸汽額定。</li>
+</ul></li>
+<li><p>
+(b) 確定飽和水容量目前額定值為 UG-131 並滿足上述 (a) 要求的閥門，請參閱 Figure 11-2。在閥門設定壓力下繪製圖表，垂直向上移動至飽和水位線並水平讀取緩解能力。此容量是透過假設平衡流量和臨界壓力比的計算值得出的理論等熵值。
+</p>
+
+<p>
+<img src="./images/asme-secviii-div1-figure-11-2.png" alt="asme-secviii-div1-figure-11-2.png" />
+<img src="./images/asme-secviii-div1-figure-11-2M.png" alt="asme-secviii-div1-figure-11-2M.png" />
+</p></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd2b8c78" class="outline-2">
-<h2 id="orgd2b8c78"><span class="section-number-2">3.</span> 壓寶計劃的企劃</h2>
+
+<div id="outline-container-org45dd6e7" class="outline-2">
+<h2 id="org45dd6e7"><span class="section-number-2">3.</span> 說明</h2>
 <div class="outline-text-2" id="text-3">
 <ul class="org-ul">
-<li>設計一套獨立的壓力容器設備強度計算系統。</li>
-<li>依強度設計參數設計自動繪圖。</li>
-</ul>
-</div>
-<div id="outline-container-org2ff424c" class="outline-3">
-<h3 id="org2ff424c"><span class="section-number-3">3.1.</span> 程式</h3>
-<div class="outline-text-3" id="text-3-1">
-</div>
-<div id="outline-container-orgcc6c869" class="outline-4">
-<h4 id="orgcc6c869"><span class="section-number-4">3.1.1.</span> maxima</h4>
-<div class="outline-text-4" id="text-3-1-1">
-<ul class="org-ul">
-<li>端板容積計算
-<ul class="org-ul">
-<li><a href="https://sites.google.com/view/each-application/software-design/calculate-internal-volume-of-spherically-dished">碟形端板容積計算</a></li>
-</ul></li>
-<li>端板厚度計算
-<ul class="org-ul">
-<li><a href="https://sites.google.com/view/each-application/software-design/maxima/%E7%A2%9F%E5%BD%A2%E7%AB%AF%E6%9D%BF%E5%8E%9A%E5%BA%A6%E8%A8%88%E7%AE%97-jis">碟形端板厚度計算-JIS</a></li>
-</ul></li>
-<li>殼板厚度計算
-<ul class="org-ul">
-<li><a href="maxima/asme-ug-27.mac">ASME UG-27</a></li>
-<li><a href="https://ya-bao.blogspot.com/2024/02/jisb8265-thickness-cylindrical-shell-internal-pressure.html">壓力容器設計:圓桶形殼板內壓計算/ JIS 法規</a></li>
-</ul></li>
+<li>本文件非法規設備設計文件。</li>
+<li>This document is not a regulatory equipment design document.</li>
 </ul>
 </div>
 </div>
-</div>
-</div>
-<div id="outline-container-org32020ba" class="outline-2">
-<h2 id="org32020ba"><span class="section-number-2">4.</span> 相關網頁</h2>
+
+<div id="outline-container-org605653a" class="outline-2">
+<h2 id="org605653a"><span class="section-number-2">4.</span> 相關網頁</h2>
 <div class="outline-text-2" id="text-4">
 </div>
-<div id="outline-container-orgf3b5dfd" class="outline-3">
-<h3 id="orgf3b5dfd"><span class="section-number-3">4.1.</span> <a href="https://sites.google.com/view/each-application/homepage">各申機械設計工作室</a></h3>
+<div id="outline-container-orgfa62c42" class="outline-3">
+<h3 id="orgfa62c42"><span class="section-number-3">4.1.</span> <a href="https://sites.google.com/view/each-application/homepage">各申機械設計工作室</a></h3>
 <div class="outline-text-3" id="text-4-1">
 </div>
-<div id="outline-container-orgfa03387" class="outline-4">
-<h4 id="orgfa03387"><span class="section-number-4">4.1.1.</span> <a href="https://sites.google.com/view/each-application/contact-us">聯絡方式</a></h4>
+<div id="outline-container-orgd66bc36" class="outline-4">
+<h4 id="orgd66bc36"><span class="section-number-4">4.1.1.</span> <a href="https://sites.google.com/view/each-application/contact-us">聯絡方式</a></h4>
 </div>
-<div id="outline-container-org9afb251" class="outline-4">
-<h4 id="org9afb251"><span class="section-number-4">4.1.2.</span> <a href="https://sites.google.com/view/each-application/pressure-vessel-design/%E5%A3%93%E5%8A%9B%E5%AE%B9%E5%99%A8%E8%A8%AD%E8%A8%88%E8%AB%AE%E8%A9%A2">壓力容器設計諮詢</a></h4>
+<div id="outline-container-org244869b" class="outline-4">
+<h4 id="org244869b"><span class="section-number-4">4.1.2.</span> <a href="https://sites.google.com/view/each-application/pressure-vessel-design/%E5%A3%93%E5%8A%9B%E5%AE%B9%E5%99%A8%E8%A8%AD%E8%A8%88%E8%AB%AE%E8%A9%A2">壓力容器設計諮詢</a></h4>
 </div>
 </div>
-<div id="outline-container-org4fed34e" class="outline-3">
-<h3 id="org4fed34e"><span class="section-number-3">4.2.</span> <a href="https://ya-bao.blogspot.com/">壓寶計劃</a></h3>
+<div id="outline-container-org7c2b5e1" class="outline-3">
+<h3 id="org7c2b5e1"><span class="section-number-3">4.2.</span> <a href="https://ya-bao.blogspot.com/">壓寶計劃</a></h3>
 </div>
 </div>
 </div>
