@@ -1,0 +1,45 @@
+/*CAPACITY CONVERSIONS FOR SAFETY VALVES 安全閥流量轉換*/
+/*kill(all);*/
+/*單位系統*/
+/* unit_system: "U.S. Customary" or "SI";*/
+
+/*對於蒸汽
+C_N = 51.5 for U.S. Customary calculations
+    = 5.25 for SI calculations
+*/
+W_s(K,A,P):=block([CN:if unit_system = "U.S. Customary" then 51.5 else 5.25],CN*K*A*P);
+
+/*對於空氣
+C = 356 for U.S. Customary calculations
+  = 27.03 for SI calculations
+M = 28.97 mol/wt.
+T = 520 when W a is the rated capacity (for U.S. Cus-
+    tomary calculations)
+  = 293 when W a is the rated capacity (for SI
+    calculations)
+  */
+
+W_a(K,A,P):=block([
+  C: if unit_system = "U.S. Customary" then 356.0 else 27.03,
+  M: 28.97,
+  T: if unit_system = "U.S. Customary" then 520.0 else 29.3],
+  C*K*A*P*sqrt(M/T));
+
+/*對於任何氣體或蒸氣 */
+/*
+A = ac tua l dis c harge area of the s af ety v alve ,
+in. 2 (mm 2 )
+C = constant for gas or vapor which is function of the
+ratio of specific heats, k = c p /c v (see Figure 11-1)
+K = coefficient of discharge [see UG-131(d) and
+UG-131(e)]
+M = molecular weight
+P = (set pressure × 1.10) plus atmospheric pressure,
+psia (MPa a b s )
+T = absolute temperature at inlet [(°F + 460) (K)]
+W = flow of any gas or vapor, lb/hr
+W a = rated capacity, converted to lb/hr (kg/h) of air at
+60°F (20°C), inlet temperature
+W s = rated capacity, lb/hr (kg/h) of steam
+*/
+W(C,K,A,P,M,T):= block([], C*K*A*P*sqrt(M/T));
