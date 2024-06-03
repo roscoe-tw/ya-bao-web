@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2024-05-31 五 16:08 -->
+<!-- 2024-06-03 一 17:36 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CAPACITY CONVERSIONS FOR SAFETY VALVES PROGRAM @@html:&lt;br&gt;@@ 安全閥流量轉換程式</title>
@@ -303,6 +303,63 @@ W[a]<span style="color: #00ffff;">:</span>W(C[a],K,A,P,M[a],T[a])$
 <span style="color: #b0c4de;">print</span>(<span style="color: #ffc1c1;">"W[a]="</span>,<span style="color: #b0c4de;">float</span>(<span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,W[a])))$
 <span style="color: #b0c4de;">print</span>(<span style="color: #ffc1c1;">"="</span>,<span style="color: #b0c4de;">float</span>(<span style="color: #b0c4de;">ev</span>(<span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,W[a]),s1)))$
 </pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgcf6cdc1" class="outline-3">
+<h3 id="orgcf6cdc1"><span class="section-number-3">2.2.</span> EXAMPLE 2</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+鑑於：需要釋放 5,000 lb/hr 的丙烷從壓力容器經安全閥組洩壓，壓力為 P_s, psi ，入口溫度為溫度為 125°F。
+問題：安全閥必須提供的總流量（lb/hr 蒸汽）是多少？
+</p>
+</div>
+<div id="outline-container-org2febbce" class="outline-4">
+<h4 id="org2febbce"><span class="section-number-4">2.2.1.</span> maxima</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<div class="org-src-container">
+<pre class="src src-maxima"><span style="color: #fa8072;">/*</span>
+<span style="color: #ff7f24; font-style: italic;">GIVEN: It is required to relieve 5,000 lb/hr of propane</span>
+<span style="color: #ff7f24; font-style: italic;">from a pressure vessel through a safety valve set to re-</span>
+<span style="color: #ff7f24; font-style: italic;">lieve at a pressure of P s , psi, and with an inlet temperature</span>
+<span style="color: #ff7f24; font-style: italic;">at 125&#176;F.</span>
+<span style="color: #ff7f24; font-style: italic;">PROBLEM: What total capacity in pounds of steam per</span>
+<span style="color: #ff7f24; font-style: italic;">hour in safety valves must be furnished?</span>
+<span style="color: #fa8072;">*/</span>
+
+<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">SOLUTION:</span><span style="color: #fa8072;">*/</span>
+<span style="color: #b0c4de;">kill</span>(<span style="color: #00ffff;">all</span>);
+<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#33258;&#34892;&#19979;&#36617; ccfave.mac </span><span style="color: #fa8072;">*/</span>
+<span style="color: #b0c4de;">batch</span>(<span style="color: #ffc1c1;">"ccfave.mac"</span>);
+<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#21934;&#20301;&#31995;&#32113;</span><span style="color: #fa8072;">*/</span>
+unit_system<span style="color: #00ffff;">:</span> <span style="color: #ffc1c1;">"U.S. Customary"</span>;
+
+<span style="color: #fa8072;">/*</span>
+<span style="color: #ff7f24; font-style: italic;">&#23565;&#26044;&#19993;&#28919;</span>
+<span style="color: #fa8072;">*/</span>
+f0<span style="color: #00ffff;">:</span>W[p]<span style="color: #00ffff;">=</span>W(C,K,A,P,M,T);
+<span style="color: #fa8072;">/*</span>
+<span style="color: #ff7f24; font-style: italic;">The value of C is not definitely known. Use the conser- value, C = 315.</span>
+<span style="color: #fa8072;">*/</span>
+C[p]<span style="color: #00ffff;">:</span>315<span style="color: #00ffff;">.</span>0;
+M[p]<span style="color: #00ffff;">:</span>44<span style="color: #00ffff;">.</span>09;
+T[p]<span style="color: #00ffff;">:</span>460<span style="color: #00ffff;">.</span>0<span style="color: #00ffff;">+</span>125<span style="color: #00ffff;">.</span>0;
+W[p]<span style="color: #00ffff;">:</span>5000<span style="color: #00ffff;">.</span>0;
+
+f01<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">ev</span>(f0,C<span style="color: #00ffff;">=</span>C[p],M<span style="color: #00ffff;">=</span>M[p],T<span style="color: #00ffff;">=</span>T[p],W[p]<span style="color: #00ffff;">:</span>W[p]);
+f02<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,f01);
+
+f1<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">float</span>(<span style="color: #b0c4de;">solve</span>(f02,KAP));
+
+<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">For steam, &#23565;&#26044;&#33976;&#27773;</span><span style="color: #fa8072;">*/</span>
+
+f2<span style="color: #00ffff;">:</span>W[s]<span style="color: #00ffff;">=</span><span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,W_s(K,A,P));
+
+<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">unit: lb/hr set to relieve at P_s,psi </span><span style="color: #fa8072;">*/</span>
+f3<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">ev</span>(f2,f1);
+
+</pre>
+</div>
 </div>
 </div>
 </div>
