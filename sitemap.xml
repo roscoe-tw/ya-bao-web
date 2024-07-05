@@ -72,4 +72,10 @@
   <priority>
    0.5</priority>
  </url>
+ <url>
+  <loc>
+   https://roscoe-tw.github.io/ya-bao-web/vertical-heat-exchanger.html</loc>
+  <priority>
+   0.5</priority>
+ </url>
 </urlset>
