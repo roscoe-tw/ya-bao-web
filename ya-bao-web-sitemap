@@ -78,4 +78,10 @@
   <priority>
    0.5</priority>
  </url>
+ <url>
+  <loc>
+   https://roscoe-tw.github.io/ya-bao-web/Nitrogen-buffer-tank.html</loc>
+  <priority>
+   0.5</priority>
+ </url>
 </urlset>
