@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="tw" xml:lang="tw">
 <head>
-<!-- 2024-08-16 五 12:17 -->
+<!-- 2026-03-23 一 16:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>CAPACITY CONVERSIONS FOR SAFETY VALVES PROGRAM @@html:&lt;br&gt;@@ 安全閥流量轉換程式</title>
@@ -208,51 +208,51 @@
 原始碼下載： <a href="./maxima/ccfave.mac">ccfave.mac</a>
 </p>
 <div class="org-src-container">
-<pre class="src src-maxima"><span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">CAPACITY CONVERSIONS FOR SAFETY VALVES &#23433;&#20840;&#38309;&#27969;&#37327;&#36681;&#25563;</span><span style="color: #fa8072;">*/</span>
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">kill(all);</span><span style="color: #fa8072;">*/</span>
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#21934;&#20301;&#31995;&#32113;</span><span style="color: #fa8072;">*/</span>
-<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">unit_system: "U.S. Customary" or "SI";</span><span style="color: #fa8072;">*/</span>
+<pre class="src src-maxima">/*CAPACITY CONVERSIONS FOR SAFETY VALVES 安全閥流量轉換*/
+/*kill(all);*/
+/*單位系統*/
+/* unit_system: "U.S. Customary" or "SI";*/
 
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#23565;&#26044;&#33976;&#27773;</span>
-<span style="color: #ff7f24; font-style: italic;">C_N = 51.5 for U.S. Customary calculations</span>
-<span style="color: #ff7f24; font-style: italic;">    = 5.25 for SI calculations</span>
-<span style="color: #fa8072;">*/</span>
-<span style="color: #00fa9a; font-weight: bold;">W_s</span>(<span style="color: #7fffd4;">K,A,P</span>)<span style="color: #00ffff;">:=</span><span style="color: #b0c4de;">block</span>([CN<span style="color: #00ffff;">:if</span> unit_system <span style="color: #00ffff;">=</span> <span style="color: #ffc1c1;">"U.S. Customary"</span> <span style="color: #00ffff;">then</span> 51<span style="color: #00ffff;">.</span>5 <span style="color: #00ffff;">else</span> 5<span style="color: #00ffff;">.</span>25],CN<span style="color: #00ffff;">*</span>K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P);
+/*對於蒸汽
+C_N = 51.5 for U.S. Customary calculations
+    = 5.25 for SI calculations
+*/
+W_s(K,A,P):=block([CN:if unit_system = "U.S. Customary" then 51.5 else 5.25],CN*K*A*P);
 
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#23565;&#26044;&#31354;&#27683;</span>
-<span style="color: #ff7f24; font-style: italic;">C = 356 for U.S. Customary calculations</span>
-<span style="color: #ff7f24; font-style: italic;">  = 27.03 for SI calculations</span>
-<span style="color: #ff7f24; font-style: italic;">M = 28.97 mol/wt.</span>
-<span style="color: #ff7f24; font-style: italic;">T = 520 when W a is the rated capacity (for U.S. Cus-</span>
-<span style="color: #ff7f24; font-style: italic;">    tomary calculations)</span>
-<span style="color: #ff7f24; font-style: italic;">  = 293 when W a is the rated capacity (for SI</span>
-<span style="color: #ff7f24; font-style: italic;">    calculations)</span>
-<span style="color: #ff7f24; font-style: italic;">  </span><span style="color: #fa8072;">*/</span>
+/*對於空氣
+C = 356 for U.S. Customary calculations
+  = 27.03 for SI calculations
+M = 28.97 mol/wt.
+T = 520 when W a is the rated capacity (for U.S. Cus-
+    tomary calculations)
+  = 293 when W a is the rated capacity (for SI
+    calculations)
+  */
 
-<span style="color: #00fa9a; font-weight: bold;">W_a</span>(<span style="color: #7fffd4;">K,A,P</span>)<span style="color: #00ffff;">:=</span><span style="color: #b0c4de;">block</span>([
-  C<span style="color: #00ffff;">:</span> <span style="color: #00ffff;">if</span> unit_system <span style="color: #00ffff;">=</span> <span style="color: #ffc1c1;">"U.S. Customary"</span> <span style="color: #00ffff;">then</span> 356<span style="color: #00ffff;">.</span>0 <span style="color: #00ffff;">else</span> 27<span style="color: #00ffff;">.</span>03,
-  M<span style="color: #00ffff;">:</span> 28<span style="color: #00ffff;">.</span>97,
-  T<span style="color: #00ffff;">:</span> <span style="color: #00ffff;">if</span> unit_system <span style="color: #00ffff;">=</span> <span style="color: #ffc1c1;">"U.S. Customary"</span> <span style="color: #00ffff;">then</span> 520<span style="color: #00ffff;">.</span>0 <span style="color: #00ffff;">else</span> 29<span style="color: #00ffff;">.</span>3],
-  C<span style="color: #00ffff;">*</span>K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P<span style="color: #00ffff;">*</span><span style="color: #b0c4de;">sqrt</span>(M<span style="color: #00ffff;">/</span>T));
+W_a(K,A,P):=block([
+  C: if unit_system = "U.S. Customary" then 356.0 else 27.03,
+  M: 28.97,
+  T: if unit_system = "U.S. Customary" then 520.0 else 29.3],
+  C*K*A*P*sqrt(M/T));
 
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#23565;&#26044;&#20219;&#20309;&#27683;&#39636;&#25110;&#33976;&#27683; </span><span style="color: #fa8072;">*/</span>
-<span style="color: #fa8072;">/*</span>
-<span style="color: #ff7f24; font-style: italic;">A = ac tua l dis c harge area of the s af ety v alve ,</span>
-<span style="color: #ff7f24; font-style: italic;">in. 2 (mm 2 )</span>
-<span style="color: #ff7f24; font-style: italic;">C = constant for gas or vapor which is function of the</span>
-<span style="color: #ff7f24; font-style: italic;">ratio of specific heats, k = c p /c v (see Figure 11-1)</span>
-<span style="color: #ff7f24; font-style: italic;">K = coefficient of discharge [see UG-131(d) and</span>
-<span style="color: #ff7f24; font-style: italic;">UG-131(e)]</span>
-<span style="color: #ff7f24; font-style: italic;">M = molecular weight</span>
-<span style="color: #ff7f24; font-style: italic;">P = (set pressure &#215; 1.10) plus atmospheric pressure,</span>
-<span style="color: #ff7f24; font-style: italic;">psia (MPa a b s )</span>
-<span style="color: #ff7f24; font-style: italic;">T = absolute temperature at inlet [(&#176;F + 460) (K)]</span>
-<span style="color: #ff7f24; font-style: italic;">W = flow of any gas or vapor, lb/hr</span>
-<span style="color: #ff7f24; font-style: italic;">W a = rated capacity, converted to lb/hr (kg/h) of air at</span>
-<span style="color: #ff7f24; font-style: italic;">60&#176;F (20&#176;C), inlet temperature</span>
-<span style="color: #ff7f24; font-style: italic;">W s = rated capacity, lb/hr (kg/h) of steam</span>
-<span style="color: #fa8072;">*/</span>
-<span style="color: #00fa9a; font-weight: bold;">W</span>(<span style="color: #7fffd4;">C,K,A,P,M,T</span>)<span style="color: #00ffff;">:=</span> <span style="color: #b0c4de;">block</span>([], C<span style="color: #00ffff;">*</span>K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P<span style="color: #00ffff;">*</span><span style="color: #b0c4de;">sqrt</span>(M<span style="color: #00ffff;">/</span>T));
+/*對於任何氣體或蒸氣 */
+/*
+A = ac tua l dis c harge area of the s af ety v alve ,
+in. 2 (mm 2 )
+C = constant for gas or vapor which is function of the
+ratio of specific heats, k = c p /c v (see Figure 11-1)
+K = coefficient of discharge [see UG-131(d) and
+UG-131(e)]
+M = molecular weight
+P = (set pressure × 1.10) plus atmospheric pressure,
+psia (MPa a b s )
+T = absolute temperature at inlet [(°F + 460) (K)]
+W = flow of any gas or vapor, lb/hr
+W a = rated capacity, converted to lb/hr (kg/h) of air at
+60°F (20°C), inlet temperature
+W s = rated capacity, lb/hr (kg/h) of steam
+*/
+W(C,K,A,P,M,T):= block([], C*K*A*P*sqrt(M/T));
 
 </pre>
 </div>
@@ -271,36 +271,36 @@
 空氣而言？
 </p>
 <div class="org-src-container">
-<pre class="src src-maxima"><span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">EX1 </span><span style="color: #fa8072;">*/</span>
-<span style="color: #fa8072;">/*</span>
-<span style="color: #ff7f24; font-style: italic;">GIVEN: A safety valve bears a certified capacity rating</span>
-<span style="color: #ff7f24; font-style: italic;">of 3,020 lb/hr of steam for a pressure setting of 200 psi.</span>
-<span style="color: #ff7f24; font-style: italic;">PROBLEM: What is the relieving capacity of that valve</span>
-<span style="color: #ff7f24; font-style: italic;">in terms of air at 100&#176;F for the same pressure setting?</span>
-<span style="color: #fa8072;">*/</span>
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">SOLUTION:</span><span style="color: #fa8072;">*/</span>
-<span style="color: #b0c4de;">batch</span>(<span style="color: #ffc1c1;">"ccfave.mac"</span>);
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#21934;&#20301;&#31995;&#32113;</span><span style="color: #fa8072;">*/</span>
-unit_system<span style="color: #00ffff;">:</span> <span style="color: #ffc1c1;">"U.S. Customary"</span>;
+<pre class="src src-maxima">/* EX1 */
+/*
+GIVEN: A safety valve bears a certified capacity rating
+of 3,020 lb/hr of steam for a pressure setting of 200 psi.
+PROBLEM: What is the relieving capacity of that valve
+in terms of air at 100°F for the same pressure setting?
+*/
+/*SOLUTION:*/
+batch("ccfave.mac");
+/*單位系統*/
+unit_system: "U.S. Customary";
 
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">For steam</span><span style="color: #fa8072;">*/</span>
-W[s]<span style="color: #00ffff;">:</span>3020<span style="color: #00ffff;">.</span>0$
-s1<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">solve</span>(<span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,W[s]<span style="color: #00ffff;">=</span>W_s(K,A,P)),KAP)$
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">printf(true,"~&amp;~A~&amp;~A",ratsubst(KAP,K*A*P,W[s]=W_s(K,A,P)),s1)$</span><span style="color: #fa8072;">*/</span>
-<span style="color: #b0c4de;">print</span>(<span style="color: #ffc1c1;">"W[s]="</span>,W[s])$
-<span style="color: #b0c4de;">print</span>(<span style="color: #b0c4de;">float</span>(<span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,W[s]<span style="color: #00ffff;">=</span>W_s(K,A,P))))$
-<span style="color: #b0c4de;">print</span>(<span style="color: #b0c4de;">float</span>(s1))$
+/*For steam*/
+W[s]:3020.0$
+s1:solve(ratsubst(KAP,K*A*P,W[s]=W_s(K,A,P)),KAP)$
+/*printf(true,"~&amp;~A~&amp;~A",ratsubst(KAP,K*A*P,W[s]=W_s(K,A,P)),s1)$*/
+print("W[s]=",W[s])$
+print(float(ratsubst(KAP,K*A*P,W[s]=W_s(K,A,P))))$
+print(float(s1))$
 
-C[a]<span style="color: #00ffff;">:if</span> unit_system <span style="color: #00ffff;">=</span> <span style="color: #ffc1c1;">"U.S. Customary"</span> <span style="color: #00ffff;">then</span> 356<span style="color: #00ffff;">.</span>0 <span style="color: #00ffff;">else</span> 27<span style="color: #00ffff;">.</span>03$
-M[a]<span style="color: #00ffff;">:</span>28<span style="color: #00ffff;">.</span>97$
-T[a]<span style="color: #00ffff;">:</span>460<span style="color: #00ffff;">.</span>0<span style="color: #00ffff;">+</span>100<span style="color: #00ffff;">.</span>0$
-W[a]<span style="color: #00ffff;">:</span>W(C[a],K,A,P,M[a],T[a])$
+C[a]:if unit_system = "U.S. Customary" then 356.0 else 27.03$
+M[a]:28.97$
+T[a]:460.0+100.0$
+W[a]:W(C[a],K,A,P,M[a],T[a])$
 
-<span style="color: #b0c4de;">print</span>(<span style="color: #ffc1c1;">"C="</span>, C[a])$
-<span style="color: #b0c4de;">print</span>(<span style="color: #ffc1c1;">"M="</span>, M[a])$
-<span style="color: #b0c4de;">print</span>(<span style="color: #ffc1c1;">"T=460+100="</span>, T[a])$
-<span style="color: #b0c4de;">print</span>(<span style="color: #ffc1c1;">"W[a]="</span>,<span style="color: #b0c4de;">float</span>(<span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,W[a])))$
-<span style="color: #b0c4de;">print</span>(<span style="color: #ffc1c1;">"="</span>,<span style="color: #b0c4de;">float</span>(<span style="color: #b0c4de;">ev</span>(<span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,W[a]),s1)))$
+print("C=", C[a])$
+print("M=", M[a])$
+print("T=460+100=", T[a])$
+print("W[a]=",float(ratsubst(KAP,K*A*P,W[a])))$
+print("=",float(ev(ratsubst(KAP,K*A*P,W[a]),s1)))$
 </pre>
 </div>
 </div>
@@ -317,45 +317,45 @@ W[a]<span style="color: #00ffff;">:</span>W(C[a],K,A,P,M[a],T[a])$
 <h4 id="org188dcac"><span class="section-number-4">2.2.1.</span> maxima</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <div class="org-src-container">
-<pre class="src src-maxima"><span style="color: #fa8072;">/*</span>
-<span style="color: #ff7f24; font-style: italic;">GIVEN: It is required to relieve 5,000 lb/hr of propane</span>
-<span style="color: #ff7f24; font-style: italic;">from a pressure vessel through a safety valve set to re-</span>
-<span style="color: #ff7f24; font-style: italic;">lieve at a pressure of P s , psi, and with an inlet temperature</span>
-<span style="color: #ff7f24; font-style: italic;">at 125&#176;F.</span>
-<span style="color: #ff7f24; font-style: italic;">PROBLEM: What total capacity in pounds of steam per</span>
-<span style="color: #ff7f24; font-style: italic;">hour in safety valves must be furnished?</span>
-<span style="color: #fa8072;">*/</span>
+<pre class="src src-maxima">/*
+GIVEN: It is required to relieve 5,000 lb/hr of propane
+from a pressure vessel through a safety valve set to re-
+lieve at a pressure of P s , psi, and with an inlet temperature
+at 125°F.
+PROBLEM: What total capacity in pounds of steam per
+hour in safety valves must be furnished?
+*/
 
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">SOLUTION:</span><span style="color: #fa8072;">*/</span>
-<span style="color: #b0c4de;">kill</span>(<span style="color: #00ffff;">all</span>);
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#33258;&#34892;&#19979;&#36617; ccfave.mac </span><span style="color: #fa8072;">*/</span>
-<span style="color: #b0c4de;">batch</span>(<span style="color: #ffc1c1;">"ccfave.mac"</span>);
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">&#21934;&#20301;&#31995;&#32113;</span><span style="color: #fa8072;">*/</span>
-unit_system<span style="color: #00ffff;">:</span> <span style="color: #ffc1c1;">"U.S. Customary"</span>;
+/*SOLUTION:*/
+kill(all);
+/*自行下載 ccfave.mac */
+batch("ccfave.mac");
+/*單位系統*/
+unit_system: "U.S. Customary";
 
-<span style="color: #fa8072;">/*</span>
-<span style="color: #ff7f24; font-style: italic;">&#23565;&#26044;&#19993;&#28919;</span>
-<span style="color: #fa8072;">*/</span>
-f0<span style="color: #00ffff;">:</span>W[p]<span style="color: #00ffff;">=</span>W(C,K,A,P,M,T);
-<span style="color: #fa8072;">/*</span>
-<span style="color: #ff7f24; font-style: italic;">The value of C is not definitely known. Use the conser- value, C = 315.</span>
-<span style="color: #fa8072;">*/</span>
-C[p]<span style="color: #00ffff;">:</span>315<span style="color: #00ffff;">.</span>0;
-M[p]<span style="color: #00ffff;">:</span>44<span style="color: #00ffff;">.</span>09;
-T[p]<span style="color: #00ffff;">:</span>460<span style="color: #00ffff;">.</span>0<span style="color: #00ffff;">+</span>125<span style="color: #00ffff;">.</span>0;
-W[p]<span style="color: #00ffff;">:</span>5000<span style="color: #00ffff;">.</span>0;
+/*
+對於丙烷
+*/
+f0:W[p]=W(C,K,A,P,M,T);
+/*
+The value of C is not definitely known. Use the conser- value, C = 315.
+*/
+C[p]:315.0;
+M[p]:44.09;
+T[p]:460.0+125.0;
+W[p]:5000.0;
 
-f01<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">ev</span>(f0,C<span style="color: #00ffff;">=</span>C[p],M<span style="color: #00ffff;">=</span>M[p],T<span style="color: #00ffff;">=</span>T[p],W[p]<span style="color: #00ffff;">:</span>W[p]);
-f02<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,f01);
+f01:ev(f0,C=C[p],M=M[p],T=T[p],W[p]:W[p]);
+f02:ratsubst(KAP,K*A*P,f01);
 
-f1<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">float</span>(<span style="color: #b0c4de;">solve</span>(f02,KAP));
+f1:float(solve(f02,KAP));
 
-<span style="color: #fa8072;">/*</span><span style="color: #ff7f24; font-style: italic;">For steam, &#23565;&#26044;&#33976;&#27773;</span><span style="color: #fa8072;">*/</span>
+/*For steam, 對於蒸汽*/
 
-f2<span style="color: #00ffff;">:</span>W[s]<span style="color: #00ffff;">=</span><span style="color: #b0c4de;">ratsubst</span>(KAP,K<span style="color: #00ffff;">*</span>A<span style="color: #00ffff;">*</span>P,W_s(K,A,P));
+f2:W[s]=ratsubst(KAP,K*A*P,W_s(K,A,P));
 
-<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">unit: lb/hr set to relieve at P_s,psi </span><span style="color: #fa8072;">*/</span>
-f3<span style="color: #00ffff;">:</span><span style="color: #b0c4de;">ev</span>(f2,f1);
+/* unit: lb/hr set to relieve at P_s,psi */
+f3:ev(f2,f1);
 
 </pre>
 </div>

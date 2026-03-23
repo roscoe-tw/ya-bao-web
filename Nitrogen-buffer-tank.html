@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2024-08-16 五 12:17 -->
+<!-- 2026-03-23 一 16:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>氮氣緩衝槽容積需求計算</title>
@@ -269,53 +269,53 @@
 <h3 id="orge87132e"><span class="section-number-3">4.1.</span> 計算儲氣緩衝槽</h3>
 <div class="outline-text-3" id="text-4-1">
 <div class="org-src-container">
-<pre class="src src-maxima"><span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">&#35336;&#31639;&#20786;&#27683;&#32233;&#34909;&#27133; </span><span style="color: #fa8072;">*/</span>
-<span style="color: #b0c4de;">kill</span>(<span style="color: #00ffff;">all</span>);
-<span style="color: #b0c4de;">load</span>(<span style="color: #ffc1c1;">"ezunits"</span>);
-<span style="color: #b0c4de;">load</span>(<span style="color: #ffc1c1;">"physical_constants"</span>);
+<pre class="src src-maxima">/* 計算儲氣緩衝槽 */
+kill(all);
+load("ezunits");
+load("physical_constants");
 
-declare_unit_conversion(1<span style="color: #00ffff;">.</span>0`kgf <span style="color: #00ffff;">=</span> 10<span style="color: #00ffff;">.</span>0 `N);
-declare_unit_conversion(1<span style="color: #00ffff;">.</span>0`hr <span style="color: #00ffff;">=</span> 60<span style="color: #00ffff;">.</span>0 `minute);
-declare_unit_conversion(1<span style="color: #00ffff;">.</span>0`atm <span style="color: #00ffff;">=</span> 101325<span style="color: #00ffff;">.</span>0 `Pa);
+declare_unit_conversion(1.0`kgf = 10.0 `N);
+declare_unit_conversion(1.0`hr = 60.0 `minute);
+declare_unit_conversion(1.0`atm = 101325.0 `Pa);
 
-unit_system<span style="color: #00ffff;">:</span><span style="color: #ffc1c1;">"SI"</span>;
+unit_system:"SI";
 
-<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">&#21443;&#25976; </span><span style="color: #fa8072;">*/</span>
-P_g[<span style="color: #8470ff; font-weight: bold;">1</span>]<span style="color: #00ffff;">:</span>2<span style="color: #00ffff;">.</span>0`MPa;
-P_g[<span style="color: #8470ff; font-weight: bold;">2</span>]<span style="color: #00ffff;">:</span>0<span style="color: #00ffff;">.</span>5`MPa;
-P_g[<span style="color: #8470ff; font-weight: bold;">3</span>]<span style="color: #00ffff;">:</span>0<span style="color: #00ffff;">.</span>0`MPa;
+/* 參數 */
+P_g[1]:2.0`MPa;
+P_g[2]:0.5`MPa;
+P_g[3]:0.0`MPa;
 
-<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">&#32085;&#23565;&#22739;&#21147; </span><span style="color: #fa8072;">*/</span>
-<span style="color: #00fa9a; font-weight: bold;">P_abs</span>(<span style="color: #7fffd4;">P</span>)<span style="color: #00ffff;">:=</span> <span style="color: #b0c4de;">block</span>([], P<span style="color: #00ffff;">+</span> 0<span style="color: #00ffff;">.</span>1013`MPa);
+/* 絕對壓力 */
+P_abs(P):= block([], P+ 0.1013`MPa);
 
-P_abs[<span style="color: #8470ff; font-weight: bold;">1</span>]<span style="color: #00ffff;">:</span>P_abs(P_g[<span style="color: #8470ff; font-weight: bold;">1</span>]);
-P_abs[<span style="color: #8470ff; font-weight: bold;">2</span>]<span style="color: #00ffff;">:</span>P_abs(P_g[<span style="color: #8470ff; font-weight: bold;">2</span>]);
-P_abs[<span style="color: #8470ff; font-weight: bold;">3</span>]<span style="color: #00ffff;">:</span>P_abs(P_g[<span style="color: #8470ff; font-weight: bold;">3</span>]);
+P_abs[1]:P_abs(P_g[1]);
+P_abs[2]:P_abs(P_g[2]);
+P_abs[3]:P_abs(P_g[3]);
 
-<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">&#24050;&#30693;&#27683;&#39636;&#27969;&#37327;&#65292;&#25345;&#32396;&#26178;&#38291; </span><span style="color: #fa8072;">*/</span>
-<span style="color: #b0c4de;">time</span>[<span style="color: #8470ff; font-weight: bold;">3</span>] <span style="color: #00ffff;">:</span> <span style="color: #8470ff; font-weight: bold;">30</span> `minute ``hr;
-Q[<span style="color: #8470ff; font-weight: bold;">3</span>]<span style="color: #00ffff;">:</span> 8000<span style="color: #00ffff;">.</span>0 `l<span style="color: #00ffff;">/</span>hr `` m<span style="color: #00ffff;">^</span><span style="color: #8470ff; font-weight: bold;">3</span><span style="color: #00ffff;">/</span>hr;
+/* 已知氣體流量，持續時間 */
+time[3] : 30 `minute ``hr;
+Q[3]: 8000.0 `l/hr `` m^3/hr;
 
-<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">&#29702;&#24819;&#27683;&#39636;&#29376;&#24907;&#26041;&#31243;&#24335; </span><span style="color: #fa8072;">*/</span>
-e1<span style="color: #00ffff;">:</span> P<span style="color: #00ffff;">*</span>V <span style="color: #00ffff;">=</span> n<span style="color: #00ffff;">*</span>R<span style="color: #00ffff;">*</span>T;
+/* 理想氣體狀態方程式 */
+e1: P*V = n*R*T;
 
-<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">&#29702;&#24819;&#27683;&#39636;&#24120;&#25976; </span><span style="color: #fa8072;">*/</span>
-R<span style="color: #00ffff;">:</span>constvalue(%R);
+/* 理想氣體常數 */
+R:constvalue(%R);
 
-<span style="color: #fa8072;">/* </span><span style="color: #ff7f24; font-style: italic;">&#27874;&#20197;&#32819;&#23450;&#24459;: &#28331;&#24230;&#24646;&#23450;&#26178;&#65292;&#19968;&#23450;&#37327;&#27683;&#39636;&#30340;&#22739;&#21147;&#21644;&#23427;&#30340;&#39636;&#31309;&#30340;&#20056;&#31309;&#28858;&#24646;&#37327;&#12290;</span><span style="color: #fa8072;">*/</span>
-n[<span style="color: #8470ff; font-weight: bold;">1</span>]<span style="color: #00ffff;">=</span>n[<span style="color: #8470ff; font-weight: bold;">2</span>];
-Temp[<span style="color: #8470ff; font-weight: bold;">1</span>]<span style="color: #00ffff;">=</span>Temp[<span style="color: #8470ff; font-weight: bold;">2</span>];
+/* 波以耳定律: 溫度恆定時，一定量氣體的壓力和它的體積的乘積為恆量。*/
+n[1]=n[2];
+Temp[1]=Temp[2];
 
-e2<span style="color: #00ffff;">:</span> P[<span style="color: #8470ff; font-weight: bold;">1</span>]<span style="color: #00ffff;">*</span>V[<span style="color: #8470ff; font-weight: bold;">1</span>] <span style="color: #00ffff;">=</span> P[<span style="color: #8470ff; font-weight: bold;">2</span>]<span style="color: #00ffff;">*</span>(V[<span style="color: #8470ff; font-weight: bold;">1</span>]<span style="color: #00ffff;">+</span>V[<span style="color: #8470ff; font-weight: bold;">2</span>]);
-e3<span style="color: #00ffff;">:</span> P[<span style="color: #8470ff; font-weight: bold;">2</span>]<span style="color: #00ffff;">*</span>V[<span style="color: #8470ff; font-weight: bold;">2</span>] <span style="color: #00ffff;">=</span> P[<span style="color: #8470ff; font-weight: bold;">3</span>]<span style="color: #00ffff;">*</span>V[<span style="color: #8470ff; font-weight: bold;">3</span>];
+e2: P[1]*V[1] = P[2]*(V[1]+V[2]);
+e3: P[2]*V[2] = P[3]*V[3];
 
-e4<span style="color: #00ffff;">:</span> <span style="color: #b0c4de;">solve</span>(e2,V[<span style="color: #8470ff; font-weight: bold;">1</span>]);
-e5<span style="color: #00ffff;">:</span> <span style="color: #b0c4de;">solve</span>(e3,V[<span style="color: #8470ff; font-weight: bold;">2</span>]);
+e4: solve(e2,V[1]);
+e5: solve(e3,V[2]);
 
-e6<span style="color: #00ffff;">:</span> V[<span style="color: #8470ff; font-weight: bold;">3</span>]<span style="color: #00ffff;">=</span>Q[<span style="color: #8470ff; font-weight: bold;">3</span>]<span style="color: #00ffff;">*</span><span style="color: #b0c4de;">time</span>[<span style="color: #8470ff; font-weight: bold;">3</span>];
-e7<span style="color: #00ffff;">:</span> <span style="color: #b0c4de;">ev</span>(e5,e6,P[<span style="color: #8470ff; font-weight: bold;">2</span>]<span style="color: #00ffff;">=</span>P_abs[<span style="color: #8470ff; font-weight: bold;">2</span>],P[<span style="color: #8470ff; font-weight: bold;">3</span>]<span style="color: #00ffff;">=</span>P_abs[<span style="color: #8470ff; font-weight: bold;">3</span>]);
+e6: V[3]=Q[3]*time[3];
+e7: ev(e5,e6,P[2]=P_abs[2],P[3]=P_abs[3]);
 
-e8<span style="color: #00ffff;">:</span> <span style="color: #b0c4de;">ev</span>(e4,P[<span style="color: #8470ff; font-weight: bold;">1</span>]<span style="color: #00ffff;">=</span>P_abs[<span style="color: #8470ff; font-weight: bold;">1</span>],P[<span style="color: #8470ff; font-weight: bold;">2</span>]<span style="color: #00ffff;">=</span>P_abs[<span style="color: #8470ff; font-weight: bold;">2</span>],e7[<span style="color: #8470ff; font-weight: bold;">1</span>]);
+e8: ev(e4,P[1]=P_abs[1],P[2]=P_abs[2],e7[1]);
 
 </pre>
 </div>
@@ -324,7 +324,7 @@ e8<span style="color: #00ffff;">:</span> <span style="color: #b0c4de;">ev</span>
 </p>
 
 
-<div id="org40af10c" class="figure">
+<div id="orgf1bfa79" class="figure">
 <p><img src="images/氮氣緩衝槽內容積需求計算結果.png" alt="氮氣緩衝槽內容積需求計算結果.png" align="center" />
 </p>
 <p><span class="figure-number">Figure 1: </span>氮氣緩衝槽內容積需求計算結果</p>
